@@ -1,7 +1,8 @@
 package HTTP::Session;
 use Moose;
-use Digest::SHA1 qw(sha1_hex);                                                                                                        
-use Time::HiRes qw(gettimeofday);                                                                                                     
+use Digest::SHA1 qw(sha1_hex); 
+use Carp;
+use Time::HiRes qw(gettimeofday);
 use UNIVERSAL::require;
 use 5.00800;
 our $VERSION = '0.01';
