@@ -87,7 +87,7 @@ sub inject_session_id {
 sub save_session {
     my ($self, ) = @_;
     croak "double save" if $self->is_saved;
-    $self->store->save_session( $self->params );
+    $self->store->save_session( $self->session_id => $self->params );
     $self->is_saved(1);
 }
 
