@@ -6,21 +6,25 @@ my $storage = { };
 
 sub select {
     my ( $self, $session_id ) = @_;
+    Carp::croak "missing session_id" unless $session_id;
     $storage->{$session_id};
 }
 
 sub insert {
     my ($self, $session_id, $data) = @_;
+    Carp::croak "missing session_id" unless $session_id;
     $storage->{$session_id} = $data;
 }
 
 sub update {
     my ($self, $session_id, $data) = @_;
+    Carp::croak "missing session_id" unless $session_id;
     $storage->{$session_id} = $data;
 }
 
 sub delete {
     my ($self, $session_id) = @_;
+    Carp::croak "missing session_id" unless $session_id;
     delete $storage->{$session_id};
 }
 
