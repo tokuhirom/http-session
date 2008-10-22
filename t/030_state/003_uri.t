@@ -3,7 +3,7 @@ use warnings;
 use Test::More tests => 9;
 use Test::Exception;
 use HTTP::Session;
-use HTTP::Session::Store::Memory;
+use HTTP::Session::Store::Debug;
 use HTTP::Session::State::URI;
 use HTTP::Response;
 use CGI;
@@ -13,7 +13,11 @@ ok $state->does('HTTP::Session::Role::State');
 
 sub {
     my $session = HTTP::Session->new(
-        store   => HTTP::Session::Store::Memory->new,
+        store   => HTTP::Session::Store::Debug->new(
+            data => {
+                bar =>  { }
+            },
+        ),
         state   => HTTP::Session::State::URI->new(),
         request => CGI->new({ sid => 'bar' }),
     );

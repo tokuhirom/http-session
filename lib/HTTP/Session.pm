@@ -74,6 +74,9 @@ sub _load_session {
         if ($data) {
             $self->_data($data);
         } else {
+            # session was expired? or session fixation?
+            # regen session id.
+            $self->session_id( $self->_generate_session_id($self->request) );
             $self->is_fresh(1);
         }
     } else {
