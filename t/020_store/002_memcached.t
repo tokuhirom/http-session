@@ -8,7 +8,7 @@ use HTTP::Session;
 use CGI;
 require HTTP::Session::Store::Memcached;
 use HTTP::Session::State::Null;
-use Cache::Memcached::Fast;
+require Cache::Memcached::Fast;
 
 my $store = HTTP::Session::Store::Memcached->new(
     memd => Cache::Memcached::Fast->new(
