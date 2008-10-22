@@ -191,15 +191,15 @@ easy to integrate with L<HTTP::Engine> =)
 
 =over 4
 
-=item load_session
+=item $session->load_session()
 
 load session
 
-=item response_filter
+=item $session->response_filter()
 
 filtering response
 
-=item keys
+=item $session->keys()
 
 keys of session.
 
@@ -219,11 +219,13 @@ remove item.
 
 remove whole items
 
-=item as_hashref
+=item $session->as_hashref()
 
 session as hashref.
 
-=item expire
+=item $session->expire()
+
+expire the session
 
 =back
 
