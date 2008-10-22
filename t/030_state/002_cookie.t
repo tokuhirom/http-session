@@ -1,11 +1,13 @@
 use strict;
 use warnings;
-use Test::More tests => 8;
+use Test::More tests => 9;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Memory;
 use HTTP::Session::State::Cookie;
 use HTTP::Response;
+use HTTP::Request;
+use HTTP::Headers;
 use CGI;
 
 sub {
@@ -16,11 +18,25 @@ sub {
         state   => HTTP::Session::State::Cookie->new(),
         request => CGI->new
     );
-    $session->load_session;
     is $session->session_id(), 'bar';
     my $res = HTTP::Response->new(200, 'foo');
     $session->response_filter($res);
     is $res->header('Set-Cookie'), 'http_session_sid=bar; path=/';
+}->();
+
+sub {
+    my $session = HTTP::Session->new(
+        store   => HTTP::Session::Store::Memory->new,
+        state   => HTTP::Session::State::Cookie->new(),
+        request => HTTP::Request->new(
+            'GET',
+            '/',
+            HTTP::Headers->new(
+                Cookie => 'http_session_sid=bar; path=/;',
+            ),
+        ),
+    );
+    is $session->session_id(), 'bar';
 }->();
 
 sub {
@@ -31,7 +47,6 @@ sub {
         state   => HTTP::Session::State::Cookie->new(),
         request => CGI->new
     );
-    $session->load_session;
     like $session->session_id(), qr/^[a-z0-9]{32}$/, 'cookie not found';
 }->();
 
@@ -47,7 +62,6 @@ sub {
         ),
         request => CGI->new
     );
-    $session->load_session;
     is $session->session_id, 'bar';
     my $res = HTTP::Response->new(200, 'foo');
     $session->response_filter($res);
@@ -65,7 +79,6 @@ sub {
         ),
         request => CGI->new
     );
-    $session->load_session;
     is $session->session_id, 'bar';
     my $res = HTTP::Response->new(200, 'foo');
     $session->response_filter($res);

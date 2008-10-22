@@ -17,7 +17,6 @@ sub {
         state   => HTTP::Session::State::URI->new(),
         request => CGI->new({ sid => 'bar' }),
     );
-    $session->load_session;
     is $session->session_id(), 'bar';
 
     sub {

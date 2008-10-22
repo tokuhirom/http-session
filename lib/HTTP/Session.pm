@@ -10,6 +10,7 @@ use Scalar::Util ();
 
 class_type 'CGI';
 class_type 'HTTP::Engine::Request';
+class_type 'HTTP::Request';
 
 has store => (
     is       => 'ro',
@@ -25,7 +26,7 @@ has state => (
 
 has request => (
     is       => 'ro',
-    isa      => 'CGI|HTTP::Engine::Request',
+    isa      => 'CGI|HTTP::Engine::Request|HTTP::Request',
     required => 1,
 );
 
@@ -58,7 +59,12 @@ has sid_length => (
     default => 32,
 );
 
-sub load_session {
+sub BUILD {
+    my $self = shift;
+    $self->_load_session;
+}
+
+sub _load_session {
     my $self = shift;
 
     my $session_id = $self->state->get_session_id($self->request);

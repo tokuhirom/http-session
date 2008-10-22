@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More tests => 2;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::State::Null;
@@ -15,8 +15,7 @@ sub {
         request => CGI->new(),
     );
     my $res = HTTP::Response->new;
-    dies_ok { $session->response_filter };
-    dies_ok { $session->response_filter($res) };
+    throws_ok { $session->response_filter } qr/missing response/;
     $session->session_id('hoge');
     lives_ok { $session->response_filter($res) };
 }->();

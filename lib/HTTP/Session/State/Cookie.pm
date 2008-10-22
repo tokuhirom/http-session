@@ -29,7 +29,7 @@ has expires => (
 sub get_session_id {
     my ($self, $req) = @_;
 
-    my %jar    = CGI::Cookie->fetch;
+    my %jar    = CGI::Cookie->parse($ENV{HTTP_COOKIE} || $req->header('Cookie'));
     my $cookie = $jar{$self->name};
     return $cookie ? $cookie->value : undef;
 }

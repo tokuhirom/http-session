@@ -17,14 +17,12 @@ sub gen_session () {
 
 sub {
     my $session = gen_session();
-    $session->load_session();
     $session->set('foo', 'bar');
     ok $session->is_fresh;
 }->();
 
 sub {
     my $session = gen_session();
-    $session->load_session();
     ok ! $session->is_fresh;
     is $session->get('foo'), 'bar';
     $session->set('hoge' => 'fuga');
@@ -32,7 +30,6 @@ sub {
 
 sub {
     my $session = gen_session();
-    $session->load_session();
     ok ! $session->is_fresh;
     is $session->get('foo'), 'bar';
     is $session->get('hoge'), 'fuga';
@@ -40,7 +37,6 @@ sub {
 
 sub {
     my $session = gen_session();
-    $session->load_session();
     $session->expire();
     isa_ok $session, 'HTTP::Session::Expired';
     ok !$session->is_fresh;
@@ -48,7 +44,6 @@ sub {
 
 sub {
     my $session = gen_session();
-    $session->load_session();
     is $session->get('foo'), undef;
 }->();
 
@@ -58,7 +53,6 @@ sub {
         store   => HTTP::Session::Store::Memory->new,
         request => CGI->new(),
     );
-    $session->load_session();
     ok $session->is_fresh, 'null session is fresh';
     is_deeply $session->as_hashref, {};
 }->();
