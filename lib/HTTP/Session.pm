@@ -235,6 +235,8 @@ Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF GMAIL COME<gt>
 
 =head1 SEE ALSO
 
+L<Catalyst::Plugin::Session>, L<Sledge::Session>
+
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify

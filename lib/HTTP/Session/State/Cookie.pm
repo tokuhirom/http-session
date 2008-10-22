@@ -4,19 +4,24 @@ with 'HTTP::Session::Role::State';
 use CGI::Cookie;
 use Carp ();
 
-has cookie_name => (
+has name => (
     is      => 'ro',
     isa     => 'Str',
     default => 'http_session_sid',
 );
 
-has cookie_path => (
+has path => (
     is => 'ro',
     isa => 'Str',
     default => '/',
 );
 
-has cookie_domain => (
+has domain => (
+    is => 'ro',
+    isa => 'Str|Undef',
+);
+
+has expires => (
     is => 'ro',
     isa => 'Str|Undef',
 );
@@ -25,7 +30,7 @@ sub get_session_id {
     my ($self, $req) = @_;
 
     my %jar    = CGI::Cookie->fetch;
-    my $cookie = $jar{$self->cookie_name};
+    my $cookie = $jar{$self->name};
     return $cookie ? $cookie->value : undef;
 }
 
@@ -36,11 +41,12 @@ sub response_filter {
     my $cookie = CGI::Cookie->new(
         sub {
             my %options = (
-                -name   => $self->cookie_name,
+                -name   => $self->name,
                 -value  => $session_id,
-                -path   => $self->cookie_path,
+                -path   => $self->path,
             );
-            $options{'-domain'} = $self->cookie_domain if $self->cookie_domain;
+            $options{'-domain'} = $self->domain if $self->domain;
+            $options{'-expires'} = $self->expires if $self->expires;
             %options;
         }->()
     );
@@ -59,9 +65,9 @@ HTTP::Session::State::Cookie - Maintain session IDs using cookies
 
     HTTP::Session->new(
         state => HTTP::Session::State::Cookie->new(
-            cookie_name   => 'foo_sid',
-            cookie_path   => '/my/',
-            cookie_domain => 'example.com,
+            name   => 'foo_sid',
+            path   => '/my/',
+            domain => 'example.com,
         ),
         store => ...,
         request => ...,
@@ -75,19 +81,26 @@ Maintain session IDs using cookies
 
 =over 4
 
-=item cookie_name
+=item name
 
 cookie name.
 
     default: http_session_sid
 
-=item cookie_path
+=item path
 
 path.
 
     default: /
 
-=item cookie_domain
+=item domain
+
+    default: undef
+
+=item expires
+
+expire date.e.g. "+3M".
+see also L<CGI::Simple::Cookie>.
 
     default: undef
 
