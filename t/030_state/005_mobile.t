@@ -3,7 +3,6 @@ use warnings;
 use Test::More;
 use Test::Exception;
 use HTTP::Session;
-use HTTP::Session::Store::Memory;
 plan skip_all => "this test requires HTTP::MobileAttribute" unless eval "use HTTP::MobileAttribute; 1;";
 plan tests => 3;
 require HTTP::Session::State::MobileAttributeID;
