@@ -12,6 +12,10 @@ has mobile_attribute => (
     required => 1,
 );
 
+has '+permissive' => (
+    'default' => 1
+);
+
 sub get_session_id {
     my $self = shift;
 

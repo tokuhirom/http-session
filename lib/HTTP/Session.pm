@@ -69,15 +69,20 @@ sub _load_session {
 
     my $session_id = $self->state->get_session_id($self->request);
     if ( $session_id ) {
-        $self->session_id( $session_id );
-        my $data = $self->store->select($self->session_id);
+        my $data = $self->store->select($session_id);
         if ($data) {
+            $self->session_id( $session_id );
             $self->_data($data);
         } else {
-            # session was expired? or session fixation?
-            # regen session id.
-            $self->session_id( $self->_generate_session_id($self->request) );
-            $self->is_fresh(1);
+            if ($self->state->permissive) {
+                $self->session_id( $session_id );
+                $self->is_fresh(1);
+            } else {
+                # session was expired? or session fixation?
+                # regen session id.
+                $self->session_id( $self->_generate_session_id($self->request) );
+                $self->is_fresh(1);
+            }
         }
     } else {
         # no sid; generate it
