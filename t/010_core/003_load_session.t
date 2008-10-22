@@ -1,16 +1,22 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 10;
 use HTTP::Session;
 use HTTP::Session::State::Test;
 use HTTP::Session::State::Null;
-use HTTP::Session::Store::Memory;
+use HTTP::Session::Store::Debug;
 use CGI;
+
+my $store = HTTP::Session::Store::Debug->new(
+    data => {
+        FOOBAR => {}
+    }
+);
 
 sub gen_session () {
     HTTP::Session->new(
         state => HTTP::Session::State::Test->new(session_id => 'FOOBAR'),
-        store => HTTP::Session::Store::Memory->new,
+        store => $store,
         request => CGI->new(),
     );
 }
@@ -18,7 +24,6 @@ sub gen_session () {
 sub {
     my $session = gen_session();
     $session->set('foo', 'bar');
-    ok $session->is_fresh;
 }->();
 
 sub {
@@ -50,7 +55,7 @@ sub {
 sub {
     my $session = HTTP::Session->new(
         state   => HTTP::Session::State::Null->new( ),
-        store   => HTTP::Session::Store::Memory->new,
+        store   => HTTP::Session::Store::Debug->new,
         request => CGI->new(),
     );
     ok $session->is_fresh, 'null session is fresh';
