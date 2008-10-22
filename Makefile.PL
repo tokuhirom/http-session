@@ -3,7 +3,7 @@ name 'HTTP-Session';
 all_from 'lib/HTTP/Session.pm';
 
 requires 'Moose' => 0.59;
-requires 'CGI::Cookie' => 1.29;
+requires 'CGI::Simple::Cookie' => 1.103;
 
 tests 't/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t';
 test_requires 'Test::More';
