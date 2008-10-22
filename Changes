@@ -1,4 +1,5 @@
 Revision history for Perl extension HTTP::Session
 
-0.01    Tue Oct 21 19:01:20 2008
-        - original version
+0.01_01 Tue Oct 21 19:01:20 2008
+        - development release
+
