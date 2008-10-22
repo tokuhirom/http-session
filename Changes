@@ -1,5 +1,10 @@
 Revision history for Perl extension HTTP::Session
 
+0.01_02
+
+        - State::Cookie: added expires option
+        - State::Cookie: change attribute name
+
 0.01_01 Tue Oct 21 19:01:20 2008
         - development release
 
