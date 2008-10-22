@@ -27,4 +27,12 @@ hirose31
 ikebe
 kan
 kazeburo
+daisuke
+maki
 TODO
+URI
+uri
+nop
+IDs
+memcached
+memd
