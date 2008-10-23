@@ -1,5 +1,11 @@
 Revision history for Perl extension HTTP::Session
 
+0.01_05
+
+        - added regenerate_sesion_id method
+        - check ip address
+        - added permissive option for mobile id state.
+
 0.01_04
 
         - fixed session fixation bug
