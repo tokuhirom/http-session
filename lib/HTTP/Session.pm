@@ -165,7 +165,13 @@ sub expire {
 }
 
 sub regenerate_session_id {
-    my $self = shift;
+    my ($self, $delete_old) = @_;
+    $self->_data( { %{ $self->_data } } );
+
+    if ($delete_old) {
+        my $oldsid = $self->session_id;
+        $self->store->delete($oldsid);
+    }
     my $session_id = $self->_generate_session_id();
     $self->session_id( $session_id );
     $self->is_fresh(1);
@@ -247,6 +253,10 @@ session as hashref.
 =item $session->expire()
 
 expire the session
+
+=item BUILD
+
+internal use only
 
 =back
 
