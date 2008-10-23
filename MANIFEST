@@ -40,8 +40,10 @@ t/010_core/002_accessor.t
 t/010_core/003_load_session.t
 t/010_core/004_validate.t
 t/010_core/005_session_fixation.t
+t/010_core/006_regenerate_session_id.t
 t/020_store/001_null.t
 t/020_store/002_memcached.t
+t/020_store/003_debug.t
 t/030_state/001_null.t
 t/030_state/002_cookie.t
 t/030_state/003_uri.t
