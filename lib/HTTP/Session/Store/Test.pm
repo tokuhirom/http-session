@@ -1,4 +1,4 @@
-package HTTP::Session::Store::Debug;
+package HTTP::Session::Store::Test;
 use Moose;
 with 'HTTP::Session::Role::Store';
 
@@ -38,12 +38,12 @@ __END__
 
 =head1 NAME
 
-HTTP::Session::Store::Debug - store session data on memory for debugging
+HTTP::Session::Store::Test - store session data on memory for debugging
 
 =head1 SYNOPSIS
 
     HTTP::Session->new(
-        store => HTTP::Session::Store::Debug->new(
+        store => HTTP::Session::Store::Test->new(
             data => {
                 foo => 'bar',
             }

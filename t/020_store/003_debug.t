@@ -4,11 +4,11 @@ use Test::More tests => 4;
 use Test::Exception;
 use HTTP::Session;
 use CGI;
-use HTTP::Session::Store::Debug;
+use HTTP::Session::Store::Test;
 use HTTP::Session::State::Null;
 
 my $session = HTTP::Session->new(
-    store   => HTTP::Session::Store::Debug->new(),
+    store   => HTTP::Session::Store::Test->new(),
     state   => HTTP::Session::State::Null->new(),
     request => CGI->new,
 );

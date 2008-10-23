@@ -4,10 +4,10 @@ use Test::More tests => 10;
 use HTTP::Session;
 use HTTP::Session::State::Test;
 use HTTP::Session::State::Null;
-use HTTP::Session::Store::Debug;
+use HTTP::Session::Store::Test;
 use CGI;
 
-my $store = HTTP::Session::Store::Debug->new(
+my $store = HTTP::Session::Store::Test->new(
     data => {
         FOOBAR => {}
     }
@@ -55,7 +55,7 @@ sub {
 sub {
     my $session = HTTP::Session->new(
         state   => HTTP::Session::State::Null->new( ),
-        store   => HTTP::Session::Store::Debug->new,
+        store   => HTTP::Session::Store::Test->new,
         request => CGI->new(),
     );
     ok $session->is_fresh, 'null session is fresh';

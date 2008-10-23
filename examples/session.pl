@@ -4,14 +4,14 @@ use HTTP::Session;
 use HTTP::Engine;
 use HTTP::Session::State::Cookie;
 use HTTP::Session::State::URI;
-use HTTP::Session::Store::Debug;
+use HTTP::Session::Store::Test;
 use HTTP::Session::State::MobileAttributeID;
 use HTTP::MobileAttribute plugins => [
     qw/ IS /
 ];
 use String::TT qw/tt strip/;
 
-my $store = HTTP::Session::Store::Debug->new();
+my $store = HTTP::Session::Store::Test->new();
 
 &main; exit;
 

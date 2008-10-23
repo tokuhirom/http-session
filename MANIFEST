@@ -27,7 +27,7 @@ lib/HTTP/Session/State/MobileAttributeID.pm
 lib/HTTP/Session/State/Null.pm
 lib/HTTP/Session/State/Test.pm
 lib/HTTP/Session/State/URI.pm
-lib/HTTP/Session/Store/Debug.pm
+lib/HTTP/Session/Store/Test.pm
 lib/HTTP/Session/Store/Memcached.pm
 lib/HTTP/Session/Store/Null.pm
 Makefile.PL

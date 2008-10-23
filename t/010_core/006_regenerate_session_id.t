@@ -4,10 +4,10 @@ use Test::More tests => 15;
 use HTTP::Session;
 use HTTP::Session::State::Test;
 use HTTP::Session::State::Null;
-use HTTP::Session::Store::Debug;
+use HTTP::Session::Store::Test;
 use CGI;
 
-my $store = HTTP::Session::Store::Debug->new(
+my $store = HTTP::Session::Store::Test->new(
     data => {
         FOOBAR => {
             foo => 'bar',

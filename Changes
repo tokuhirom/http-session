@@ -9,7 +9,7 @@ Revision history for Perl extension HTTP::Session
 0.01_04
 
         - fixed session fixation bug
-        - HTTP::Session::Store::Memory renamed to HTTP::Session::Store::Debug
+        - HTTP::Session::Store::Memory renamed to HTTP::Session::Store::Test
         - added sample script
         - call load_session automatically
 

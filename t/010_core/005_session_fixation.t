@@ -3,12 +3,12 @@ use warnings;
 use Test::More tests => 3;
 use Test::Exception;
 use HTTP::Session;
-use HTTP::Session::Store::Debug;
+use HTTP::Session::Store::Test;
 use HTTP::Session::State::URI;
 use HTTP::Response;
 use CGI;
 
-my $store = HTTP::Session::Store::Debug->new(
+my $store = HTTP::Session::Store::Test->new(
     data => {
         bar =>  { }
     },
