@@ -57,7 +57,9 @@ HTTP::Session::State::MobileAttributeID - Maintain session IDs using mobile phon
 =head1 SYNOPSIS
 
     HTTP::Session->new(
-        state => HTTP::Session::State::MobileAttributeID->new(),
+        state => HTTP::Session::State::MobileAttributeID->new(
+            mobile_attribute => HTTP::MobileAttribute->new($r),
+        ),
         store => ...,
         request => ...,
     );

@@ -38,7 +38,7 @@ __END__
 
 =head1 NAME
 
-HTTP::Session::Store::Test - store session data on memory for debugging
+HTTP::Session::Store::Test - store session data on memory for testing
 
 =head1 SYNOPSIS
 
@@ -54,7 +54,7 @@ HTTP::Session::Store::Test - store session data on memory for debugging
 
 =head1 DESCRIPTION
 
-store session data on memory
+store session data on memory for testing
 
 =head1 CONFIGURATION
 

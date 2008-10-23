@@ -48,7 +48,9 @@ HTTP::Session::Store::Memcached - store session data in memcached
 =head1 SYNOPSIS
 
     HTTP::Session->new(
-        store => HTTP::Session::Store::Memcached->new(),
+        store => HTTP::Session::Store::Memcached->new(
+            memd => Cache::Memcached->new(servers => ['127.0.0.1:11211']),
+        ),
         state => ...,
         request => ...,
     );
