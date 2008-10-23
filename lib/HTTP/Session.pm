@@ -100,7 +100,6 @@ sub _generate_session_id {
 sub response_filter {
     my ($self, $response) = @_;
     Carp::croak "missing response" unless Scalar::Util::blessed $response;
-    Carp::croak "missing session_id" unless defined $self->session_id;
 
     $self->state->response_filter($response, $self->session_id);
 }
