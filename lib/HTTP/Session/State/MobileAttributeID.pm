@@ -76,7 +76,7 @@ instance of L<HTTP::MobileAttribute>
 
 =item check_ip
 
-check the ip address in the carrier's cidr/ or not?
+check the IP address in the carrier's cidr/ or not?
 see also L<Net::CIDR::MobileJP>
 
 =back
