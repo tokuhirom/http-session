@@ -4,6 +4,7 @@ with 'HTTP::Session::Role::State';
 use Moose::Util::TypeConstraints;
 use HTTP::MobileAttribute  plugins => [
     'UserID',
+    'CIDR',
 ];
 
 has mobile_attribute => (
@@ -12,16 +13,28 @@ has mobile_attribute => (
     required => 1,
 );
 
+has check_ip => (
+    is      => 'ro',
+    isa     => 'Bool',
+    default => 1,
+);
+
 has '+permissive' => (
     'default' => 1
 );
 
 sub get_session_id {
-    my $self = shift;
+    my ($self, $req) = @_;
 
     my $ma = $self->mobile_attribute;
     if ($ma->can('user_id')) {
         if (my $user_id = $ma->user_id) {
+            if ($self->check_ip) {
+                my $ip = $ENV{REMOTE_ADDR} || $req->address || die "cannot get address";
+                if (!$ma->isa_cidr($ip)) {
+                    die "SECURITY: invalid ip($ip, $ma, $user_id)";
+                }
+            }
             return $user_id;
         } else {
             die "cannot detect mobile id from $ma";
@@ -60,6 +73,11 @@ Maintain session IDs using mobile phone's unique id
 =item mobile_attribute
 
 instance of L<HTTP::MobileAttribute>
+
+=item check_ip
+
+check the ip address in the carrier's cidr/ or not?
+see also L<Net::CIDR::MobileJP>
 
 =back
 
