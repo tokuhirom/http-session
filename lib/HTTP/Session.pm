@@ -164,6 +164,13 @@ sub expire {
     bless $self, 'HTTP::Session::Expired';
 }
 
+sub regenerate_session_id {
+    my $self = shift;
+    my $session_id = $self->_generate_session_id();
+    $self->session_id( $session_id );
+    $self->is_fresh(1);
+}
+
 no Moose; __PACKAGE__->meta->make_immutable;
 
 package HTTP::Session::Expired;
