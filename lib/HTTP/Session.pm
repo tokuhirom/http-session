@@ -254,6 +254,10 @@ session as hashref.
 
 expire the session
 
+=item $session->regenerate_session_id([$delete_old])
+
+regenerate session id.remove old one when $delete_old is true value.
+
 =item BUILD
 
 internal use only
