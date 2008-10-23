@@ -17,7 +17,9 @@ my $store = HTTP::Session::Store::Debug->new(
 );
 
 sub {
-    local $ENV{HTTP_COOKIE} = 'http_session_sid=bar; path=/;';
+    local %ENV = (
+        HTTP_COOKIE => 'http_session_sid=bar; path=/;',
+    );
 
     my $session = HTTP::Session->new(
         store   => $store,
