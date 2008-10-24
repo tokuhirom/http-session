@@ -1,2 +1,2 @@
-[TestingAndTestging::ProhibitNoStrict]
+[TestingAndDebugging::ProhibitNoStrict]
 allow=refs
