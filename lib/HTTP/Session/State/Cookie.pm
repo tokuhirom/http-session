@@ -38,6 +38,13 @@ sub response_filter {
     my ($self, $res, $session_id) = @_;
     Carp::croak "missing session_id" unless $session_id;
 
+    $self->header_filter($res, $session_id);
+}
+
+sub header_filter {
+    my ($self, $res, $session_id) = @_;
+    Carp::croak "missing session_id" unless $session_id;
+
     my $cookie = CGI::Cookie->new(
         sub {
             my %options = (
@@ -109,6 +116,10 @@ see also L<CGI::Simple::Cookie>.
 =head1 METHODS
 
 =over 4
+
+=item header_filter($res)
+
+header filter
 
 =item get_session_id
 
