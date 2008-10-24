@@ -1,5 +1,10 @@
 Revision history for Perl extension HTTP::Session
 
+0.02
+
+        - added $session->redirect_filter($url), $session->header_filter($res), $session->response_filter($res)
+        - Store::Debug is renamed to Store::Test. thanks to nekokak++
+
 0.01_05
 
         - added regenerate_sesion_id method
