@@ -35,6 +35,7 @@ sub response_filter {
 
 sub html_filter {
     my ($self, $session_id, $html) = @_;
+    Carp::croak "missing session_id" unless $session_id;
 
     my $session_id_name = $self->session_id_name;
 
@@ -49,6 +50,7 @@ sub html_filter {
 
 sub redirect_filter {
     my ( $self, $session_id, $path ) = @_;
+    Carp::croak "missing session_id" unless $session_id;
 
     my $uri = URI->new($path);
     $uri->query_form( $uri->query_form, $self->session_id_name => $session_id );
