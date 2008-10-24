@@ -22,19 +22,19 @@ sub response_filter {
 
     if ($res->code == 302) {
         if (my $uri = $res->header('Location')) {
-            $res->header('Location' => $self->_redirect_filter($uri, $session_id));
+            $res->header('Location' => $self->redirect_filter($session_id, $uri));
         }
         return $res;
     } elsif ($res->content) {
-        $res->content( $self->_html_filter($res->content, $session_id) );
+        $res->content( $self->html_filter($session_id, $res->content) );
         return $res;
     } else {
         return $res; # nop
     }
 }
 
-sub _html_filter {
-    my ($self, $html, $session_id) = @_;
+sub html_filter {
+    my ($self, $session_id, $html) = @_;
 
     my $session_id_name = $self->session_id_name;
 
@@ -47,8 +47,8 @@ sub _html_filter {
     );
 }
 
-sub _redirect_filter {
-    my ( $self, $path, $session_id ) = @_;
+sub redirect_filter {
+    my ( $self, $session_id, $path ) = @_;
 
     my $uri = URI->new($path);
     $uri->query_form( $uri->query_form, $self->session_id_name => $session_id );
@@ -92,6 +92,14 @@ You can set the session id name.
 =head1 METHODS
 
 =over 4
+
+=item html_filter($session_id, $html)
+
+HTML filter
+
+=item redirect_filter($session_id, $url)
+
+redirect filter
 
 =item get_session_id
 
