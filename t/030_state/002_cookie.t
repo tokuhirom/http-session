@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 9;
+use Test::More tests => 10;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
@@ -88,9 +88,18 @@ sub {
         request => CGI->new
     );
     is $session->session_id, 'bar';
-    my $res = HTTP::Response->new(200, 'foo');
-    $session->response_filter($res);
-    like $res->header('Set-Cookie'), qr!foo_sid=bar; path=/; expires=[A-Z][a-z]{2}, \d+-[A-Z][a-z]{2}-\d{4} \d\d:\d\d:\d\d GMT!;
+
+    {
+        my $res = HTTP::Response->new(200, 'foo');
+        $session->response_filter($res);
+        like $res->header('Set-Cookie'), qr!foo_sid=bar; path=/; expires=[A-Z][a-z]{2}, \d+-[A-Z][a-z]{2}-\d{4} \d\d:\d\d:\d\d GMT!;
+    }
+
+    {
+        my $res = HTTP::Response->new(200, 'foo');
+        $session->header_filter($res);
+        like $res->header('Set-Cookie'), qr!foo_sid=bar; path=/; expires=[A-Z][a-z]{2}, \d+-[A-Z][a-z]{2}-\d{4} \d\d:\d\d:\d\d GMT!;
+    }
 }->();
 
 sub {

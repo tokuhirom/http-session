@@ -35,14 +35,14 @@ sub get_session_id {
 }
 
 sub response_filter {
-    my ($self, $res, $session_id) = @_;
+    my ($self, $session_id, $res) = @_;
     Carp::croak "missing session_id" unless $session_id;
 
-    $self->header_filter($res, $session_id);
+    $self->header_filter($session_id, $res);
 }
 
 sub header_filter {
-    my ($self, $res, $session_id) = @_;
+    my ($self, $session_id, $res) = @_;
     Carp::croak "missing session_id" unless $session_id;
 
     my $cookie = CGI::Cookie->new(

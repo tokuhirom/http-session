@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 9;
+use Test::More tests => 11;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
@@ -36,9 +36,17 @@ sub {
     }->();
 
     sub {
+        is $session->html_filter('<form action="/"></form>'), qq{<form action="/">\n<input type="hidden" name="sid" value="bar"></form>};
+    }->();
+
+    sub {
         my $res = HTTP::Response->new(302, 'ok', HTTP::Headers->new(Location => 'http://example.com/'));
         $session->response_filter($res);
         is $res->header('Location'), q{http://example.com/?sid=bar};
+    }->();
+
+    sub {
+        is $session->redirect_filter('http://example.com/'), 'http://example.com/?sid=bar';
     }->();
 
     sub {

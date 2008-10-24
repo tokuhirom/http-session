@@ -101,7 +101,7 @@ sub response_filter {
     my ($self, $response) = @_;
     Carp::croak "missing response" unless Scalar::Util::blessed $response;
 
-    $self->state->response_filter($response, $self->session_id);
+    $self->state->response_filter($self->session_id, $response);
 }
 
 sub DESTROY {
@@ -176,7 +176,21 @@ sub regenerate_session_id {
     $self->is_fresh(1);
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
+{
+    my $meta = __PACKAGE__->meta;
+    for my $meth (qw/redirect_filter header_filter html_filter/) {
+        $meta->add_method(
+            $meth, sub {
+                my $self = shift;
+                if ($self->state->can($meth)) {
+                    $self->state->$meth($self->session_id, @_);
+                }
+            },
+        );
+    }
+    $meta->make_immutable;
+}
+no Moose;
 
 package HTTP::Session::Expired;
 sub is_fresh { 0 }
@@ -221,9 +235,21 @@ easy to integrate with L<HTTP::Engine> =)
 
 load session
 
-=item $session->response_filter()
+=item $session->html_filter($html)
 
-filtering response
+filtering HTML
+
+=item $session->redirect_filter($url)
+
+filtering redirect URL
+
+=item $session->header_filter($res)
+
+filtering header
+
+=item $session->response_filter($res)
+
+filtering response. this method runs html_filter, redirect_filter and header_filter.
 
 =item $session->keys()
 
