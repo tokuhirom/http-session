@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.03
+
+        - fixed deps
+
 0.02
 
         - added $session->redirect_filter($url), $session->header_filter($res), $session->response_filter($res)
