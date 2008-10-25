@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.04
+
+        - remove_all was deprecated.
+
 0.03
 
         - fixed deps
