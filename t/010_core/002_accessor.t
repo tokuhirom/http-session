@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 6;
+use Test::More tests => 5;
 use HTTP::Session;
 use HTTP::Session::State::Null;
 use HTTP::Session::Store::Null;
@@ -20,6 +20,4 @@ $session->as_hashref->{'foo'} = 'boo';
 is $session->get('foo'), 'bar', 'as_hashref uses copy';
 $session->remove('foo');
 is $session->get('foo'), undef, 'remove';
-$session->remove_all();
-is join('', $session->keys), '', 'remove_all';
 

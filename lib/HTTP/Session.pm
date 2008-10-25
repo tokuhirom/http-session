@@ -137,15 +137,6 @@ sub remove {
     delete $self->_data->{$key};
 }
 
-sub remove_all {
-    my $self = shift;
-
-    $self->is_changed(1);
-    for my $key ( CORE::keys %{$self->_data} ) {
-        delete $self->_data->{$key};
-    }
-}
-
 sub as_hashref {
     my $self = shift;
     return { %{ $self->_data } }; # shallow copy
@@ -266,10 +257,6 @@ set session item
 =item $session->remove(key)
 
 remove item.
-
-=item $session->remove_all()
-
-remove whole items
 
 =item $session->as_hashref()
 
