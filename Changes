@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.05
+
+        - use duck typing
+
 0.04
 
         - remove_all was deprecated.
