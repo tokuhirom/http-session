@@ -8,10 +8,6 @@ use Moose::Util::TypeConstraints;
 use Carp ();
 use Scalar::Util ();
 
-class_type 'CGI';
-class_type 'HTTP::Engine::Request';
-class_type 'HTTP::Request';
-
 has store => (
     is       => 'ro',
     does     => 'HTTP::Session::Role::Store',
@@ -26,7 +22,7 @@ has state => (
 
 has request => (
     is       => 'ro',
-    isa      => 'CGI|HTTP::Engine::Request|HTTP::Request',
+    isa      => 'Object',
     required => 1,
 );
 
