@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 10;
+use Test::More tests => 11;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
@@ -113,3 +113,13 @@ sub {
     throws_ok {$session->state->response_filter() } qr/missing session_id/;
 }->();
 
+sub {
+    local $ENV{HTTP_COOKIE} = 'foo_sid=bar; path=/admin/;';
+
+    my $session = HTTP::Session->new(
+        store => $store,
+        state => HTTP::Session::State::Cookie->new(),
+        request => CGI->new
+    );
+    is $session->html_filter('<a href="/">foo</a>'), '<a href="/">foo</a>', 'html_filter';
+}->();
