@@ -23,13 +23,15 @@ lib/HTTP/Session.pm
 lib/HTTP/Session/Role/State.pm
 lib/HTTP/Session/Role/Store.pm
 lib/HTTP/Session/State/Cookie.pm
+lib/HTTP/Session/State/GUID.pm
 lib/HTTP/Session/State/MobileAttributeID.pm
 lib/HTTP/Session/State/Null.pm
 lib/HTTP/Session/State/Test.pm
 lib/HTTP/Session/State/URI.pm
-lib/HTTP/Session/Store/Test.pm
 lib/HTTP/Session/Store/Memcached.pm
 lib/HTTP/Session/Store/Null.pm
+lib/HTTP/Session/Store/OnMemory.pm
+lib/HTTP/Session/Store/Test.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
@@ -44,11 +46,13 @@ t/010_core/006_regenerate_session_id.t
 t/020_store/001_null.t
 t/020_store/002_memcached.t
 t/020_store/003_debug.t
+t/020_store/004_onmemory.t
 t/030_state/001_null.t
 t/030_state/002_cookie.t
 t/030_state/003_uri.t
 t/030_state/004_test.t
 t/030_state/005_mobile.t
+t/030_state/006_guid.t
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
