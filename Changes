@@ -1,5 +1,10 @@
 Revision history for Perl extension HTTP::Session
 
+0.07
+
+        - added Store::OnMemory
+        - added State::GUID
+
 0.06
 
         - *_filter: through when state doesn't have a filter method

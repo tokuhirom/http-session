@@ -1,7 +1,7 @@
 package HTTP::Session;
 use Moose;
 use 5.00800;
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 use Digest::SHA1 ();
 use Time::HiRes ();
 use Moose::Util::TypeConstraints;
