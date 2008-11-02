@@ -40,3 +40,4 @@ IP
 HTML
 URL
 carrier's
+DoCoMo
