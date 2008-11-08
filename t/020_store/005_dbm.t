@@ -1,23 +1,41 @@
 use strict;
 use warnings;
-use Test::More tests => 2;
+use Test::More tests => 5;
 use Test::Exception;
 use HTTP::Session;
 use CGI;
 use HTTP::Session::Store::DBM;
-use HTTP::Session::State::Null;
+use HTTP::Session::State::Test;
 use File::Temp;
 
 my ($fh, $fname) = File::Temp::tempfile(UNLINK => 1);
-my $session = HTTP::Session->new(
-    store   => HTTP::Session::Store::DBM->new(
-        file => $fname,
-    ),
-    state   => HTTP::Session::State::Null->new(),
-    request => CGI->new,
-);
-$session->set( 'foo' => 'bar' );
-is $session->get('foo'), 'bar';
-$session->remove('foo');
-is $session->get('foo'), undef;
+sub {
+    my $session = gen_session();
+    is $session->session_id, 'haheeee';
+    $session->set( 'foo' => 'bar' );
+    $session->set( 'removed' => 'bar' );
+    $session->remove('removed');
+    $session->set( 'complex' => {'t' => 'k'} );
+}->();
+sub {
+    my $session = gen_session();
+    is $session->session_id, 'haheeee';
+    is $session->get('foo'), 'bar';
+    is $session->get('removed'), undef;
+    is $session->get('complex')->{'t'}, 'k', 'fetch complex stuff';
+}->();
+
+sub gen_session {
+    my $session = HTTP::Session->new(
+        store => HTTP::Session::Store::DBM->new(
+            file      => $fname,
+            dbm_class => 'SDBM_File',
+        ),
+        state   => HTTP::Session::State::Test->new(
+            session_id => 'haheeee',
+            permissive => 1,
+        ),
+        request => CGI->new,
+    );
+}
 

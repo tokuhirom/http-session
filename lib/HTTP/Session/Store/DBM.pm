@@ -2,6 +2,7 @@ package HTTP::Session::Store::DBM;
 use Moose;
 with 'HTTP::Session::Role::Store';
 use Fcntl;
+use Storable;
 
 has file => (
     is       => 'ro',
@@ -30,12 +31,12 @@ has dbm_class => (
 
 sub select {
     my ( $self, $key ) = @_;
-    $self->dbm->{$key};
+    Storable::thaw $self->dbm->{$key};
 }
 
 sub insert {
     my ( $self, $key, $value ) = @_;
-    $self->dbm->{$key} = $value;
+    $self->dbm->{$key} = Storable::freeze $value;
 }
 sub update { shift->insert(@_) }
 
@@ -44,4 +45,5 @@ sub delete {
     delete $self->dbm->{$key};
 }
 
+no Moose; __PACKAGE__->meta->make_immutable;
 1;
