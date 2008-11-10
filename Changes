@@ -3,6 +3,7 @@ Revision history for Perl extension HTTP::Session
 0.11
 
         - fixed test problem(no feature changes)
+          reported by david++
 
 0.10
 
