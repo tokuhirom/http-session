@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.10
+
+        - added Store::CHI
+
 0.09
 
         - added Store::DBM
