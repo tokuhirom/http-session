@@ -1,12 +1,14 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
-use HTTP::Session::State::GUID;
+plan skip_all => "this test requires ENV{TEST_HE}" unless $ENV{TEST_HE};
+plan tests => 11;
+require HTTP::Session::State::GUID;
 use HTTP::Response;
-use HTTP::MobileAttribute;
+require HTTP::MobileAttribute;
 use CGI;
 
 my $state = HTTP::Session::State::GUID->new(
