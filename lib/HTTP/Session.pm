@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base qw/Class::Accessor::Fast/;
 use 5.00800;
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 use Digest::SHA1 ();
 use Time::HiRes ();
 use Carp ();

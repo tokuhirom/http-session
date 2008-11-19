@@ -60,3 +60,4 @@ xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
 xt/perlcriticrc
+t/040_regression/changed_typo.t

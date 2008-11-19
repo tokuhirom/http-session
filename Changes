@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.21
+
+        - fixed typo. orz.
+
 0.20
 
         - no Moose; for less memory/less loadtime
