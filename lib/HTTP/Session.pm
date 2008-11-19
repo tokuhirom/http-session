@@ -113,7 +113,7 @@ sub expire {
     $self->store->delete($self->session_id);
 
     # XXX tricky bit to unlock
-    delete $self->{$_} for qw(is_fresh changed);
+    delete $self->{$_} for qw(is_fresh is_changed);
     $self->DESTROY;
 
     # rebless to null class
