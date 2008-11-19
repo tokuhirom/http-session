@@ -16,8 +16,8 @@ sub new {
     my $class = shift;
     my %args = ref($_[0]) ? %{$_[0]} : @_;
     # check required parameters
-    for (qw/store state request/) {
-        Carp::croak "missing parameter $_" unless $args{$_};
+    for my $key (qw/store state request/) {
+        Carp::croak "missing parameter $key" unless $args{$key};
     }
     # set default values
     $args{_data} ||= {};
@@ -26,6 +26,7 @@ sub new {
     $args{sid_length} ||= 32;
     my $self = bless {%args}, $class;
     $self->_load_session();
+    Carp::croak "[BUG] we have bug" unless $self->{request};
     $self;
 }
 
