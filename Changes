@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.20
+
+        - no Moose; for less memory/less loadtime
+
 0.11
 
         - fixed test problem(no feature changes)
