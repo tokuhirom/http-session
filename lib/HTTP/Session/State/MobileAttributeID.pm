@@ -1,27 +1,24 @@
 package HTTP::Session::State::MobileAttributeID;
-use Moose;
-with 'HTTP::Session::Role::State';
-use Moose::Util::TypeConstraints;
+use HTTP::Session::State::Base;
 use HTTP::MobileAttribute  plugins => [
     'UserID',
     'CIDR',
 ];
 
-has mobile_attribute => (
-    is       => 'ro',
-    isa      => 'Object',
-    required => 1,
-);
+__PACKAGE__->mk_ro_accessors(qw/mobile_attribute check_ip/);
 
-has check_ip => (
-    is      => 'ro',
-    isa     => 'Bool',
-    default => 1,
-);
-
-has '+permissive' => (
-    'default' => 1
-);
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # check required parameters
+    for (qw/mobile_attribute/) {
+        Carp::croak "missing parameter $_" unless $args{$_};
+    }
+    # set default values
+    $args{check_ip} = exists($args{check_ip}) ? $args{check_ip} : 1;
+    $args{permissive} = exists($args{permissive}) ? $args{permissive} : 1;
+    bless {%args}, $class;
+}
 
 sub get_session_id {
     my ($self, $req) = @_;
@@ -46,7 +43,6 @@ sub get_session_id {
 
 sub response_filter { }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

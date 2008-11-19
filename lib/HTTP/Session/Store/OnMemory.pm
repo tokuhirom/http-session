@@ -1,12 +1,17 @@
 package HTTP::Session::Store::OnMemory;
-use Moose;
-with 'HTTP::Session::Role::Store';
+use strict;
+use warnings;
+use base qw/Class::Accessor::Fast/;
 
-has data => (
-    is       => 'ro',
-    isa      => 'HashRef',
-    default  => sub { +{ } },
-);
+__PACKAGE__->mk_ro_accessors(qw/data/);
+
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # set default values
+    $args{data} ||= {};
+    bless {%args}, $class;
+}
 
 sub select {
     my ( $self, $session_id ) = @_;
@@ -32,7 +37,6 @@ sub delete {
     delete $self->data->{$session_id};
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

@@ -1,14 +1,16 @@
 package HTTP::Session::State::URI;
-use Moose;
-use URI;
-with 'HTTP::Session::Role::State';
+use HTTP::Session::State::Base;
 use HTML::StickyQuery;
 
-has session_id_name => (
-    is      => 'ro',
-    isa     => 'Str',
-    default => 'sid',
-);
+__PACKAGE__->mk_ro_accessors(qw/session_id_name/);
+
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # set default values
+    $args{session_id_name} ||= 'sid';
+    bless {%args}, $class;
+}
 
 sub get_session_id {
     my ($self, $req) = @_;
@@ -57,7 +59,6 @@ sub redirect_filter {
     return $uri->as_string;
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

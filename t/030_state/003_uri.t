@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 10;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
@@ -9,7 +9,6 @@ use HTTP::Response;
 use CGI;
 
 my $state = HTTP::Session::State::URI->new();
-ok $state->does('HTTP::Session::Role::State');
 
 sub {
     my $session = HTTP::Session->new(

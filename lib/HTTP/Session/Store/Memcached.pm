@@ -1,21 +1,22 @@
 package HTTP::Session::Store::Memcached;
-use Moose;
-with 'HTTP::Session::Role::Store';
-use Moose::Util::TypeConstraints;
+use strict;
+use warnings;
+use base qw/Class::Accessor::Fast/;
 
-class_type 'Cache::Memcached::Fast';
-class_type 'Cache::Memcached';
+__PACKAGE__->mk_ro_accessors(qw/memd expires/);
 
-has memd => (
-    is  => 'ro',
-    isa => 'Cache::Memcached::Fast|Cache::Memcached',
-);
-
-has expires => (
-    is       => 'ro',
-    isa      => 'Int',
-    requires => 1,
-);
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # check required parameters
+    for (qw/memd/) {
+        Carp::croak "missing parameter $_" unless $args{$_};
+    }
+    unless (ref $args{memd} && index(ref($args{memd}), 'Memcached') >= 0) {
+        Carp::croak "memd requires instance of Cache::Memcached::Fast or Cache::Memcached";
+    }
+    bless {%args}, $class;
+}
 
 sub select {
     my ( $self, $session_id ) = @_;
@@ -37,7 +38,6 @@ sub delete {
     $self->memd->delete( $session_id );
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

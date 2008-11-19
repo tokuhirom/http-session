@@ -1,13 +1,14 @@
 package HTTP::Session::Store::Null;
-use Moose;
-with 'HTTP::Session::Role::Store';
+use strict;
+use warnings;
+
+sub new { bless {}, shift }
 
 sub select { }
 sub insert { }
 sub update { }
 sub delete { }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

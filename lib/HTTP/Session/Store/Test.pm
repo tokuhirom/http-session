@@ -1,7 +1,8 @@
 package HTTP::Session::Store::Test;
-use Moose;
-extends 'HTTP::Session::Store::OnMemory';
-no Moose; __PACKAGE__->meta->make_immutable;
+use strict;
+use warnings;
+use base qw/HTTP::Session::Store::OnMemory/;
+
 1;
 __END__
 

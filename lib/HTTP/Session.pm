@@ -1,5 +1,7 @@
 package HTTP::Session;
-use Moose;
+use strict;
+use warnings;
+use base qw/Class::Accessor::Fast/;
 use 5.00800;
 our $VERSION = '0.11';
 use Digest::SHA1 ();
@@ -8,56 +10,24 @@ use Moose::Util::TypeConstraints;
 use Carp ();
 use Scalar::Util ();
 
-has store => (
-    is       => 'ro',
-    does     => 'HTTP::Session::Role::Store',
-    required => 1,
-);
+__PACKAGE__->mk_ro_accessors(qw/store state request sid_length/);
+__PACKAGE__->mk_accessors(qw/session_id _data is_changed is_fresh/);
 
-has state => (
-    is       => 'ro',
-    does     => 'HTTP::Session::Role::State',
-    required => 1,
-);
-
-has request => (
-    is       => 'ro',
-    isa      => 'Object',
-    required => 1,
-);
-
-has session_id => (
-    is       => 'rw',
-    isa      => 'Str',
-);
-
-has _data => (
-    is      => 'rw',
-    isa     => 'HashRef',
-    default => sub { +{} },
-);
-
-has is_changed => (
-    is      => 'rw',
-    isa     => 'Bool',
-    default => 0,
-);
-
-has is_fresh => (
-    is      => 'rw',
-    isa     => 'Bool',
-    default => 0,
-);
-
-has sid_length => (
-    is => 'ro',
-    isa => 'Int',
-    default => 32,
-);
-
-sub BUILD {
-    my $self = shift;
-    $self->_load_session;
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # check required parameters
+    for (qw/store state request/) {
+        Carp::croak "missing parameter $_" unless $args{$_};
+    }
+    # set default values
+    $args{_data} ||= {};
+    $args{is_changed} ||= 0;
+    $args{is_fresh}   ||= 0;
+    $args{sid_length} ||= 32;
+    my $self = bless {%args}, $class;
+    $self->_load_session();
+    $self;
 }
 
 sub _load_session {
@@ -163,23 +133,19 @@ sub regenerate_session_id {
     $self->is_fresh(1);
 }
 
-{
-    my $meta = __PACKAGE__->meta;
+BEGIN {
+    no strict 'refs';
     for my $meth (qw/redirect_filter header_filter html_filter/) {
-        $meta->add_method(
-            $meth, sub {
-                my ($self, $stuff) = @_;
-                if ($self->state->can($meth)) {
-                    $self->state->$meth($self->session_id, $stuff);
-                } else {
-                    $stuff;
-                }
-            },
-        );
+        *{__PACKAGE__ . '::' . $meth} = sub {
+            my ($self, $stuff) = @_;
+            if ($self->state->can($meth)) {
+                $self->state->$meth($self->session_id, $stuff);
+            } else {
+                $stuff;
+            }
+        };
     }
-    $meta->make_immutable;
 }
-no Moose;
 
 package HTTP::Session::Expired;
 sub is_fresh { 0 }

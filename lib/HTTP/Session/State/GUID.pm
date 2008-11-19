@@ -1,6 +1,7 @@
 package HTTP::Session::State::GUID;
-use Moose;
-extends 'HTTP::Session::State::MobileAttributeID';
+use strict;
+use warnings;
+use base qw/HTTP::Session::State::MobileAttributeID/;
 use HTML::StickyQuery::DoCoMoGUID;
 
 sub response_filter {
@@ -39,7 +40,6 @@ sub redirect_filter {
     return $uri->as_string;
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

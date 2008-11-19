@@ -5,7 +5,7 @@ use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
 plan skip_all => "this test requires ENV{TEST_HE}" unless $ENV{TEST_HE};
-plan tests => 11;
+plan tests => 10;
 require HTTP::Session::State::GUID;
 use HTTP::Response;
 require HTTP::MobileAttribute;
@@ -14,7 +14,6 @@ use CGI;
 my $state = HTTP::Session::State::GUID->new(
     mobile_attribute => HTTP::MobileAttribute->new('DoCoMo/1.0/D504i/c10/TJ'),
 );
-ok $state->does('HTTP::Session::Role::State');
 ok $state->isa('HTTP::Session::State::MobileAttributeID');
 
 sub {

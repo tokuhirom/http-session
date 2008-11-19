@@ -1,12 +1,18 @@
 package HTTP::Session::State::Test;
-use Moose;
-with 'HTTP::Session::Role::State';
+use HTTP::Session::State::Base;
 
-has session_id => (
-    is       => 'ro',
-    isa      => 'Str',
-    required => 1,
-);
+__PACKAGE__->mk_ro_accessors(qw/session_id/);
+
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # check required parameters
+    for (qw/session_id/) {
+        Carp::croak "missing parameter $_" unless $args{$_};
+    }
+    # set default values
+    bless {%args}, $class;
+}
 
 sub get_session_id {
     my $self = shift;
@@ -14,7 +20,6 @@ sub get_session_id {
 }
 sub response_filter { }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

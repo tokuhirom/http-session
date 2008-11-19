@@ -1,33 +1,34 @@
 package HTTP::Session::Store::DBM;
-use Moose;
-with 'HTTP::Session::Role::Store';
+use strict;
+use warnings;
+use base qw/Class::Accessor::Fast/;
 use Fcntl;
 use Storable;
+use UNIVERSAL::require;
 
-has file => (
-    is       => 'ro',
-    isa      => 'Str',
-    required => 1,
-);
+__PACKAGE__->mk_ro_accessors(qw/file dbm_class/);
 
-has dbm => (
-    is      => 'ro',
-    isa     => 'HashRef',
-    default => sub {
-        my $self = shift;
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # check required parameters
+    for (qw/file/) {
+        Carp::croak "missing parameter $_" unless $args{$_};
+    }
+    # set default values
+    $args{dbm_class} ||= 'SDBM_File';
+    bless {%args}, $class;
+}
+
+sub dbm {
+    my $self = shift;
+    $self->{dbm} ||= do {
         my %hash;
-        Class::MOP::load_class( $self->dbm_class );
+        $self->dbm_class->use or die $@;
         tie %hash, $self->dbm_class, $self->file, O_CREAT | O_RDWR, oct("600");
-        return \%hash;
-    },
-    lazy    => 1,
-);
-
-has dbm_class => (
-    is      => 'ro',
-    isa     => 'Str',
-    default => 'SDBM_File',
-);
+        \%hash;
+    };
+}
 
 sub select {
     my ( $self, $key ) = @_;
@@ -45,5 +46,4 @@ sub delete {
     delete $self->dbm->{$key};
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;

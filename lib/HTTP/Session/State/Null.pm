@@ -1,11 +1,9 @@
 package HTTP::Session::State::Null;
-use Moose;
-with 'HTTP::Session::Role::State';
+use HTTP::Session::State::Base;
 
 sub get_session_id  { }
 sub response_filter { }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

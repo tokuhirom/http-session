@@ -16,6 +16,7 @@ my $store = HTTP::Session::Store::Memcached->new(
         servers => ['127.0.0.1:11211'],
         }
     ),
+    expires => 60,
 );
 
 my $key = "jklj352krtsfskfjlafkjl235j1" . rand();

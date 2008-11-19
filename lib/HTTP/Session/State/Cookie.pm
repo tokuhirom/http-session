@@ -1,30 +1,18 @@
 package HTTP::Session::State::Cookie;
-use Moose;
-with 'HTTP::Session::Role::State';
+use HTTP::Session::State::Base;
 use CGI::Cookie;
 use Carp ();
 
-has name => (
-    is      => 'ro',
-    isa     => 'Str',
-    default => 'http_session_sid',
-);
+__PACKAGE__->mk_ro_accessors(qw/name path domain expires/);
 
-has path => (
-    is => 'ro',
-    isa => 'Str',
-    default => '/',
-);
-
-has domain => (
-    is => 'ro',
-    isa => 'Str|Undef',
-);
-
-has expires => (
-    is => 'ro',
-    isa => 'Str|Undef',
-);
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # set default values
+    $args{name} ||= 'http_session_sid';
+    $args{path} ||= '/';
+    bless {%args}, $class;
+}
 
 sub get_session_id {
     my ($self, $req) = @_;
@@ -60,7 +48,6 @@ sub header_filter {
     $res->header( 'Set-Cookie' => $cookie->as_string );
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 

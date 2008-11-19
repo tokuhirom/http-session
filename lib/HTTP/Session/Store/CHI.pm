@@ -1,26 +1,24 @@
 package HTTP::Session::Store::CHI;
-use Moose;
-with 'HTTP::Session::Role::Store';
+use strict;
+use warnings;
+use base qw/Class::Accessor::Fast/;
 use CHI;
-use Moose::Util::TypeConstraints;
 
-class_type 'CHI::Driver';
-coerce 'CHI::Driver'
-    => from 'HashRef'
-    => via { CHI->new(%{$_}) };
+__PACKAGE__->mk_ro_accessors(qw/chi expires/);
 
-has chi => (
-    is       => 'ro',
-    isa      => 'CHI::Driver',
-    coerce   => 1,
-    required => 1,
-);
-
-has expires => (
-    is       => 'ro',
-    isa      => 'Int',
-    required => 1,
-);
+sub new {
+    my $class = shift;
+    my %args = ref($_[0]) ? %{$_[0]} : @_;
+    # check required parameters
+    for (qw/chi expires/) {
+        Carp::croak "missing parameter $_" unless $args{$_};
+    }
+    # coerce
+    if (ref $args{chi} && ref $args{chi} eq 'HASH') {
+        $args{chi} = CHI->new(%{$args{chi}});
+    }
+    bless {%args}, $class;
+}
 
 sub select {
     my ( $self, $session_id ) = @_;
@@ -42,7 +40,6 @@ sub delete {
     $self->chi->remove( $session_id );
 }
 
-no Moose; __PACKAGE__->meta->make_immutable;
 1;
 __END__
 
