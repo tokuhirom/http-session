@@ -1,5 +1,10 @@
 Revision history for Perl extension HTTP::Session
 
+0.22
+
+        - split id generator from core.
+          for the portability(Digest::SHA1 is not in perl core)
+
 0.21
 
         - fixed typo. orz.
