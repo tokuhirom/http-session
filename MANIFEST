@@ -58,11 +58,13 @@ t/030_state/003_uri.t
 t/030_state/004_test.t
 t/030_state/005_mobile.t
 t/030_state/006_guid.t
+t/030_state/007_cookie_simple.t
 t/040_regression/changed_typo.t
 t/040_regression/validation.t
 t/050_id/01_sha1.t
 t/050_id/02_md5.t
 t/050_id/03_md5_combined.t
+t/CookieTest.pm
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
