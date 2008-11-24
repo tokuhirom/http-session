@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.23
+
+    - CGI::Simple::Cookie support in HTTP::Session::State::Cookie.
+
 0.22
 
         - split id generator from core.
