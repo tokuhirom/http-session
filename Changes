@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.24
+
+    - added HTTP::Session->finalize method.
+
 0.23
 
     - CGI::Simple::Cookie support in HTTP::Session::State::Cookie.
