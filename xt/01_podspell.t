@@ -41,3 +41,4 @@ HTML
 URL
 carrier's
 DoCoMo
+CHI
