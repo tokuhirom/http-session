@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.25
+
+    - fixed test
+
 0.24
 
     - added HTTP::Session->finalize method.
