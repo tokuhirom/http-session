@@ -32,4 +32,4 @@ my $new_session_id;
     );
     is $session->get('foo'), 'bar';
 }
-
+unlink "${tmp}.$_" for qw/pag dir/;
