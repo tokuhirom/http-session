@@ -87,7 +87,13 @@ sub finalize {
 
 sub DESTROY {
     my $self = shift;
-    $self->finalize();
+
+    if ($self->{store}) {
+        $self->finalize();
+    } else {
+        # this case happen at global destruction?
+        Carp::carp "you should call HTTP::Session->finalize method manually";
+    }
 }
 
 sub keys {
