@@ -31,6 +31,7 @@ lib/HTTP/Session/State/Test.pm
 lib/HTTP/Session/State/URI.pm
 lib/HTTP/Session/Store/CHI.pm
 lib/HTTP/Session/Store/DBM.pm
+lib/HTTP/Session/Store/File.pm
 lib/HTTP/Session/Store/Memcached.pm
 lib/HTTP/Session/Store/Null.pm
 lib/HTTP/Session/Store/OnMemory.pm
@@ -52,6 +53,7 @@ t/020_store/003_debug.t
 t/020_store/004_onmemory.t
 t/020_store/005_dbm.t
 t/020_store/006_chi.t
+t/020_store/007_file.t
 t/030_state/001_null.t
 t/030_state/002_cookie.t
 t/030_state/003_uri.t
@@ -60,6 +62,8 @@ t/030_state/005_mobile.t
 t/030_state/006_guid.t
 t/030_state/007_cookie_simple.t
 t/040_regression/changed_typo.t
+t/040_regression/cycle.t
+t/040_regression/regenerate.t
 t/040_regression/validation.t
 t/050_id/01_sha1.t
 t/050_id/02_md5.t
@@ -69,4 +73,3 @@ xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t
 xt/perlcriticrc
-t/040_regression/regenerate.t

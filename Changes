@@ -1,5 +1,11 @@
 Revision history for Perl extension HTTP::Session
 
+0.26
+
+    - added Store::File(by kazuho++)
+    - hack for global destruction
+      (hmm... global destruction is strange...)
+
 0.25
 
     - fixed test
