@@ -48,3 +48,57 @@ sub _to_path {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+HTTP::Session::Store::File - File session store
+
+=head1 SYNOPSIS
+
+    HTTP::Session->new(
+        store => HTTP::Session::Store::File->new(
+            dir => '/path/to/session/',
+        ),
+        state => ...,
+        request => ...,
+    );
+
+=head1 DESCRIPTION
+
+file store for HTTP::Session
+
+=head1 CONFIGURATION
+
+=over 4
+
+=item dir
+
+path to session directory
+
+=back
+
+=head1 METHODS
+
+=over 4
+
+=item select
+
+=item update
+
+=item delete
+
+=item insert
+
+for internal use only
+
+=back
+
+=head1 AUTHORS
+
+Kazuho Oku
+
+=head1 SEE ALSO
+
+L<HTTP::Session>
+

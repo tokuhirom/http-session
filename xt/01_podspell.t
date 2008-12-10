@@ -42,3 +42,10 @@ URL
 carrier's
 DoCoMo
 CHI
+kazuho
+Kazuho
+Oku
+oku
+DBM
+dbm
+dir

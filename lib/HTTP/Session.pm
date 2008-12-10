@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base qw/Class::Accessor::Fast/;
 use 5.00800;
-our $VERSION = '0.25';
+our $VERSION = '0.26';
 use Carp ();
 use Scalar::Util ();
 use UNIVERSAL::require;
@@ -266,6 +266,12 @@ internal use only
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF GMAIL COME<gt>
+
+=head1 THANKS TO
+
+    kazuhooku
+    amachang
+    walf443
 
 =head1 SEE ALSO
 
