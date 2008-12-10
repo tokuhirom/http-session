@@ -25,7 +25,7 @@ sub {
     is $session->get('complex')->{'t'}, 'k', 'fetch complex stuff';
 }->();
 
-unlink "${fname}.$_" for qw/peg dir/;
+unlink "${fname}.$_" for qw/pag dir/;
 
 sub gen_session {
     my $session = HTTP::Session->new(
