@@ -8,7 +8,7 @@ use HTTP::Session::Store::DBM;
 use HTTP::Session::State::Test;
 use File::Temp;
 
-my ($fh, $fname) = File::Temp::tempfile(UNLINK => 1);
+my (undef, $fname) = File::Temp::tempfile(UNLINK => 1);
 sub {
     my $session = gen_session();
     is $session->session_id, 'haheeee';
@@ -24,6 +24,8 @@ sub {
     is $session->get('removed'), undef;
     is $session->get('complex')->{'t'}, 'k', 'fetch complex stuff';
 }->();
+
+unlink "${fname}.$_" for qw/peg dir/;
 
 sub gen_session {
     my $session = HTTP::Session->new(
