@@ -8,7 +8,7 @@ use HTTP::Session::Store::File;
 use HTTP::Session::State::Test;
 use File::Temp;
 
-my $dir = File::Temp::tempdir();
+my $dir = File::Temp::tempdir(CLEANUP => 1);
 sub {
     my $session = gen_session();
     is $session->session_id, 'haheeee';
