@@ -263,6 +263,10 @@ internal use only
 
 =back
 
+=head1 CLEANUP SESSION
+
+Some storage doesn't care the old session data.Please call $store->cleanup( $min ); manually.
+
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF GMAIL COME<gt>

@@ -40,6 +40,8 @@ sub delete {
     $self->chi->remove( $session_id );
 }
 
+sub cleanup { Carp::croak "This storage doesn't support cleanup" }
+
 1;
 __END__
 

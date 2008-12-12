@@ -47,6 +47,8 @@ sub _to_path {
     $self->dir . '/' . $key . '.dat';
 }
 
+sub cleanup { Carp::croak "This storage doesn't support cleanup" }
+
 1;
 __END__
 

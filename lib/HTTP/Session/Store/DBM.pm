@@ -46,6 +46,8 @@ sub delete {
     delete $self->dbm->{$key};
 }
 
+sub cleanup { Carp::croak "This storage doesn't support cleanup" }
+
 1;
 __END__
 
