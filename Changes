@@ -1,5 +1,11 @@
 Revision history for Perl extension HTTP::Session
 
+0.27
+
+    - added HTTP::Session::State::MobileAgentID
+    - cleanup temporary directory in test(by kazuho++)
+    - added Store::*->cleanup. but, this is just a stub
+
 0.26
 
     - added Store::File(by kazuho++)
