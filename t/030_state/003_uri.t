@@ -1,10 +1,12 @@
 use strict;
 use warnings;
-use Test::More tests => 10;
+use Test::More;
+plan skip_all => 'this test requires HTML::StickyQuery' unless eval "use HTML::StickyQuery; 1;";
+plan tests => 10;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
-use HTTP::Session::State::URI;
+require HTTP::Session::State::URI;
 use HTTP::Response;
 use CGI;
 
