@@ -1,5 +1,10 @@
 Revision history for Perl extension HTTP::Session
 
+0.28
+
+    - fixed tests.
+      some tests requires optional recommended modules.
+
 0.27
 
     - added HTTP::Session::State::MobileAgentID
