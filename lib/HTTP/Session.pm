@@ -162,7 +162,7 @@ BEGIN {
     }
 }
 
-package HTTP::Session::Finailzed;
+package HTTP::Session::Finalized;
 sub is_fresh { 0 }
 sub AUTOLOAD { }
 
