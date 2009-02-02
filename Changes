@@ -1,5 +1,12 @@
 Revision history for Perl extension HTTP::Session
 
+0.29
+
+    - fixed typo(reported by lyokato++)
+        18:56  lyokato_:> Finalizedがtypoになってるみたいです><
+        18:57  lyokato_:> Finailzedになってる
+
+
 0.28
 
     - fixed tests.

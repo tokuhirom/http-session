@@ -65,6 +65,7 @@ t/030_state/007_cookie_simple.t
 t/030_state/008_mobile_agent.t
 t/040_regression/changed_typo.t
 t/040_regression/cycle.t
+t/040_regression/finalized.t
 t/040_regression/regenerate.t
 t/040_regression/validation.t
 t/050_id/01_sha1.t
