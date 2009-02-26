@@ -32,7 +32,10 @@ sub new {
 sub get_session_id {
     my ($self, $req) = @_;
 
-    my %jar    = _cookie_class()->parse($ENV{HTTP_COOKIE} || $req->header('Cookie'));
+    my $cookie_header = $ENV{HTTP_COOKIE} || $req->header('Cookie');
+    return unless $cookie_header;
+
+    my %jar    = _cookie_class()->parse($cookie_header);
     my $cookie = $jar{$self->name};
     return $cookie ? $cookie->value : undef;
 }

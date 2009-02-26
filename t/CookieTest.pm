@@ -126,6 +126,22 @@ sub test {
         );
         is $session->html_filter('<a href="/">foo</a>'), '<a href="/">foo</a>', 'html_filter';
     }->();
+
+    sub {
+        {
+            package TestRequest;
+            sub new { bless {}, shift };
+            sub header {}
+        };
+        delete $ENV{HTTP_COOKIE};
+
+        my $session = HTTP::Session->new(
+            store   => $store,
+            state   => HTTP::Session::State::Cookie->new(),
+            request => TestRequest->new
+        );
+        like $session->session_id(), qr/^[a-z0-9]{32}$/, 'cookie not found';
+    }->();
 }
 
 1;
