@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base qw/Class::Accessor::Fast/;
 use 5.00800;
-our $VERSION = '0.29';
+our $VERSION = '0.30';
 use Carp ();
 use Scalar::Util ();
 use UNIVERSAL::require;
@@ -276,6 +276,12 @@ Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF GMAIL COME<gt>
     kazuhooku
     amachang
     walf443
+    yappo
+
+=head1 REPOSITORY
+
+I use github.
+repo url is here L<http://github.com/tokuhirom/http-session/tree/master>
 
 =head1 SEE ALSO
 

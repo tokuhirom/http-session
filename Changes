@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.30
+
+    - fixed uuv warning
+
 0.29
 
     - fixed typo(reported by lyokato++)
