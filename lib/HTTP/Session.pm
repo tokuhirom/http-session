@@ -277,6 +277,7 @@ Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF GMAIL COME<gt>
     amachang
     walf443
     yappo
+    nekokak
 
 =head1 REPOSITORY
 
