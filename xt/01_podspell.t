@@ -49,3 +49,6 @@ oku
 DBM
 dbm
 dir
+github
+url
+repo
