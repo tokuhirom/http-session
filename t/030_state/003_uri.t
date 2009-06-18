@@ -33,11 +33,11 @@ sub {
     sub {
         my $res = HTTP::Response->new(200, 'ok', HTTP::Headers->new(), '<form action="/"></form>');
         $session->response_filter($res);
-        is $res->content, qq{<form action="/">\n<input type="hidden" name="sid" value="bar"></form>};
+        is $res->content, qq{<form action="/">\n<input type="hidden" name="sid" value="bar" /></form>};
     }->();
 
     sub {
-        is $session->html_filter('<form action="/"></form>'), qq{<form action="/">\n<input type="hidden" name="sid" value="bar"></form>};
+        is $session->html_filter('<form action="/"></form>'), qq{<form action="/">\n<input type="hidden" name="sid" value="bar" /></form>};
     }->();
 
     sub {

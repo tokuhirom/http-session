@@ -41,7 +41,7 @@ sub html_filter {
 
     my $session_id_name = $self->session_id_name;
 
-    $html =~ s/(<form\s*.*?>)/$1\n<input type="hidden" name="$session_id_name" value="$session_id">/isg;
+    $html =~ s{(<form\s*.*?>)}{$1\n<input type="hidden" name="$session_id_name" value="$session_id" />}isg;
 
     my $sticky = HTML::StickyQuery->new;
     return $sticky->sticky(
