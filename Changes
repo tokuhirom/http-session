@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.32
+
+    - fixed deps for URI.pm
+
 0.31
 
     - State::URI: added / to input tag
