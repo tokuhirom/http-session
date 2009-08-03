@@ -7,6 +7,7 @@ requires 'CGI::Simple::Cookie' => 1.103;
 requires 'Digest::SHA1'        => 2.11;
 requires 'HTTP::Response'      => 5.818;
 requires 'UNIVERSAL::require'  => 0.05;
+requires 'URI'                 => 1.38;
 
 recommends 'HTML::StickyQuery'               => 0.12; # State::URI
 recommends 'HTML::StickyQuery::DoCoMoGUID'   => 0.01; # State::URI
