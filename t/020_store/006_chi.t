@@ -1,24 +1,22 @@
 use strict;
 use warnings;
-use Test::More;
+use Test::Requires 'CHI';
+use Test::More tests => 4*2;
 use Test::Exception;
 use HTTP::Session;
 use CGI;
 use HTTP::Session::State::Null;
-
-plan skip_all => "this test requires CHI" unless eval "use CHI; 1;";
-plan tests => 4*2;
 require HTTP::Session::Store::CHI;
 
 run_tests(
     HTTP::Session::Store::CHI->new(
-        chi => CHI->new(driver => 'Memory'),
+        chi => CHI->new(driver => 'Memory', datastore => {}),
         expires => 60*60,
     )
 );
 run_tests(
     HTTP::Session::Store::CHI->new(
-        chi => +{ driver => 'Memory' },
+        chi => +{ driver => 'Memory', datastore => {} },
         expires => 60*60,
     )
 );
