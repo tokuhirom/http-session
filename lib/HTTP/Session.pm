@@ -199,7 +199,7 @@ HTTP::Session - simple session
 
 Yet another session manager.
 
-easy to integrate with L<HTTP::Engine> =)
+easy to integrate with L<PSGI> =)
 
 =head1 METHODS
 
@@ -214,6 +214,7 @@ C<store> is instance of HTTP::Session::Store::*.
 C<state> is instance of HTTP::Session::State::*.
 
 C<request> is duck typed object.C<request> object should have C<header>, C<address>, C<param>.
+You can use PSGI's $env instead.
 
 =item $session->load_session()
 
@@ -234,6 +235,8 @@ filtering header
 =item $session->response_filter($res)
 
 filtering response. this method runs html_filter, redirect_filter and header_filter.
+
+$res should be PSGI's response array, instance of L<HTTP::Response>, or L<HTTP::Engine::Response>.
 
 =item $session->keys()
 
