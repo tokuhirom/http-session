@@ -4,9 +4,8 @@ use HTTP::Session;
 use HTTP::Session::State::Test;
 use HTTP::Session::Store::Test;
 use CGI;
-use Test::More;
-plan skip_all => 'This test requires Test::Memory::Cycle' unless eval "use Test::Memory::Cycle; 1;";
-plan tests => 1;
+use Test::Requires 'Test::Memory::Cycle';
+use Test::More tests => 1;
 
 my $session = HTTP::Session->new(
     state => HTTP::Session::State::Test->new(

@@ -15,6 +15,7 @@ recommends 'HTTP::MobileAttribute'           => 0.07; # State::MobileAttributeID
 recommends 'HTTP::MobileAgent'               => 0.27; # State::MobileAgentID
 
 tests 't/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t';
+test_requires 'Test::Requires';
 test_requires 'Test::More';
 test_requires 'Test::Exception';
 test_requires 'YAML';
