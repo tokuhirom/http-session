@@ -64,7 +64,7 @@ HTTP::Session::State::URI - embed session id to uri
 
 This state module embeds session id to uri.
 
-NOTE: This module doesn't support L<PSGI>.
+NOTE: This module doesn't support L<PSGI>'s $env for request.
 
 =head1 CONFIGURATION
 
