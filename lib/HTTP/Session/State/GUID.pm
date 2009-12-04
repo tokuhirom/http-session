@@ -3,23 +3,7 @@ use strict;
 use warnings;
 use base qw/HTTP::Session::State::MobileAttributeID/;
 use HTML::StickyQuery::DoCoMoGUID;
-
-sub response_filter {
-    my ($self, $session_id, $res) = @_;
-    Carp::croak "missing session_id" unless $session_id;
-
-    if ($res->code == 302) {
-        if (my $uri = $res->header('Location')) {
-            $res->header('Location' => $self->redirect_filter($session_id, $uri));
-        }
-        return $res;
-    } elsif ($res->content) {
-        $res->content( $self->html_filter($session_id, $res->content) );
-        return $res;
-    } else {
-        return $res; # nop
-    }
-}
+use HTTP::Session::State::Mixin::ResponseFilter qw/response_filter/;
 
 sub html_filter {
     my ($self, $session_id, $html) = @_;

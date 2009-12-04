@@ -38,7 +38,7 @@ sub get_session_id {
     my $id = _get_id($ma);
     if ($id) {
         if ($self->check_ip) {
-            my $ip = $ENV{REMOTE_ADDR} || $req->address || die "cannot get client ip address";
+            my $ip = $ENV{REMOTE_ADDR} || (Scalar::Util::blessed($req) ? $req->address : $req->{REMOTE_ADDR}) || die "cannot get client ip address";
             if ($self->cidr->get_carrier($ip) ne $ma->carrier) {
                 die "SECURITY: invalid ip($ip, $ma, $id)";
             }

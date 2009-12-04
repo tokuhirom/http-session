@@ -1,6 +1,7 @@
 package HTTP::Session::State::URI;
 use HTTP::Session::State::Base;
 use HTML::StickyQuery;
+use HTTP::Session::State::Mixin::ResponseFilter qw/response_filter/;
 
 __PACKAGE__->mk_ro_accessors(qw/session_id_name/);
 
@@ -15,24 +16,7 @@ sub new {
 sub get_session_id {
     my ($self, $req) = @_;
     Carp::croak "missing req" unless $req;
-    $req->param($self->session_id_name);
-}
-
-sub response_filter {
-    my ($self, $session_id, $res) = @_;
-    Carp::croak "missing session_id" unless $session_id;
-
-    if ($res->code == 302) {
-        if (my $uri = $res->header('Location')) {
-            $res->header('Location' => $self->redirect_filter($session_id, $uri));
-        }
-        return $res;
-    } elsif ($res->content) {
-        $res->content( $self->html_filter($session_id, $res->content) );
-        return $res;
-    } else {
-        return $res; # nop
-    }
+    $req->param($self->session_id_name); # hmm... this is not support psgi.
 }
 
 sub html_filter {
@@ -79,6 +63,8 @@ HTTP::Session::State::URI - embed session id to uri
 =head1 DESCRIPTION
 
 This state module embeds session id to uri.
+
+NOTE: This module doesn't support L<PSGI>.
 
 =head1 CONFIGURATION
 

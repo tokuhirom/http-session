@@ -27,7 +27,7 @@ sub get_session_id {
     if ($ma->can('user_id')) {
         if (my $user_id = $ma->user_id) {
             if ($self->check_ip) {
-                my $ip = $ENV{REMOTE_ADDR} || $req->address || die "cannot get address";
+                my $ip = $ENV{REMOTE_ADDR} || (Scalar::Util::blessed($req) ? $req->address : $req->{REMOTE_ADDR}) || die "cannot get address";
                 if (!$ma->isa_cidr($ip)) {
                     die "SECURITY: invalid ip($ip, $ma, $user_id)";
                 }
