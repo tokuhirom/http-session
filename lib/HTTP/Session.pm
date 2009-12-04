@@ -46,13 +46,13 @@ sub _load_session {
             } else {
                 # session was expired? or session fixation?
                 # regen session id.
-                $self->session_id( $self->_generate_session_id($self->request) );
+                $self->session_id( $self->_generate_session_id() );
                 $self->is_fresh(1);
             }
         }
     } else {
         # no sid; generate it
-        $self->session_id( $self->_generate_session_id($self->request) );
+        $self->session_id( $self->_generate_session_id() );
         $self->is_fresh(1);
     }
 }
@@ -204,6 +204,16 @@ easy to integrate with L<HTTP::Engine> =)
 =head1 METHODS
 
 =over 4
+
+=item my $session = HTTP::Session->new(store => $store, state => $state, request => $req)
+
+This method creates new instance of HTTP::Session.
+
+C<store> is instance of HTTP::Session::Store::*.
+
+C<state> is instance of HTTP::Session::State::*.
+
+C<request> is duck typed object.C<request> object should have C<header>, C<address>, C<param>.
 
 =item $session->load_session()
 
