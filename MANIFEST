@@ -18,6 +18,7 @@ inc/Test/Builder.pm
 inc/Test/Builder/Module.pm
 inc/Test/Exception.pm
 inc/Test/More.pm
+inc/Test/Requires.pm
 inc/YAML.pm
 lib/HTTP/Session.pm
 lib/HTTP/Session/ID/MD5.pm
@@ -25,6 +26,7 @@ lib/HTTP/Session/ID/SHA1.pm
 lib/HTTP/Session/State/Base.pm
 lib/HTTP/Session/State/Cookie.pm
 lib/HTTP/Session/State/GUID.pm
+lib/HTTP/Session/State/Mixin/ResponseFilter.pm
 lib/HTTP/Session/State/MobileAgentID.pm
 lib/HTTP/Session/State/MobileAttributeID.pm
 lib/HTTP/Session/State/Null.pm
@@ -71,6 +73,8 @@ t/040_regression/validation.t
 t/050_id/01_sha1.t
 t/050_id/02_md5.t
 t/050_id/03_md5_combined.t
+t/060_psgi/001_res.t
+t/060_psgi/002_req.t
 t/CookieTest.pm
 xt/01_podspell.t
 xt/02_perlcritic.t
