@@ -266,10 +266,6 @@ regenerate session id.remove old one when $delete_old is true value.
 
 commit the session data.
 
-=item BUILD
-
-internal use only
-
 =back
 
 =head1 CLEANUP SESSION
