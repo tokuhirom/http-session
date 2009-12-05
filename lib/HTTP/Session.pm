@@ -216,10 +216,6 @@ C<state> is instance of HTTP::Session::State::*.
 C<request> is duck typed object.C<request> object should have C<header>, C<address>, C<param>.
 You can use PSGI's $env instead.
 
-=item $session->load_session()
-
-load session
-
 =item $session->html_filter($html)
 
 filtering HTML
