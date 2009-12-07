@@ -76,6 +76,7 @@ t/050_id/03_md5_combined.t
 t/060_psgi/001_res.t
 t/060_psgi/002_req.t
 t/CookieTest.pm
+t/data/cidr.yaml
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t

@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.34
+
+    - fixed test issue
+
 0.33
 
     - support PSGI!
