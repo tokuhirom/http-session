@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::Requires 'HTML::StickyQuery::DoCoMoGUID', 'HTTP::MobileAttribute';
+use Test::Requires { 'Net::CIDR::MobileJP' => 0.17};
 use Test::More tests => 10;
 use CGI;
 use HTTP::Session;
