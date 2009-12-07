@@ -9,6 +9,7 @@ use HTTP::Session::State::Cookie;
 use HTTP::Session::State::URI;
 use HTTP::Session::State::GUID;
 use HTTP::Session::Store::Test;
+use Net::CIDR::MobileJP;
 
 # -------------------------------------------------------------------------
 # state::cookie
@@ -67,6 +68,7 @@ do {
         state   => HTTP::Session::State::GUID->new(
             mobile_attribute => $ma,
             check_ip => 0,
+            cidr     => Net::CIDR::MobileJP->new('t/data/cidr.yaml'),
         ),
         store   => HTTP::Session::Store::Test->new(),
         request => CGI->new(),
@@ -82,6 +84,7 @@ do {
         state   => HTTP::Session::State::GUID->new(
             mobile_attribute => $ma,
             check_ip => 0,
+            cidr     => Net::CIDR::MobileJP->new('t/data/cidr.yaml'),
         ),
         store   => HTTP::Session::Store::Test->new(),
         request => CGI->new(),
