@@ -25,7 +25,7 @@ sub dbm {
     $self->{dbm} ||= do {
         my %hash;
         $self->dbm_class->use or die $@;
-        tie %hash, $self->dbm_class, $self->file, O_CREAT | O_RDWR, oct("600");
+        tie %hash, $self->dbm_class, $self->file, O_CREAT | O_RDWR, oct("600") or die "Cannot open dbm file for session: $self->{dbm_class}, $self->{file}";
         \%hash;
     };
 }
