@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.35
+
+    - State::URI: do not embed session information to binary content.
+
 0.34
 
     - fixed test issue

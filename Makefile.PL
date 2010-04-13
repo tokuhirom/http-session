@@ -20,7 +20,7 @@ test_requires 'Test::More';
 test_requires 'Test::Exception';
 test_requires 'YAML';
 author_tests('xt');
-auto_set_repository;
+auto_set_repository();
 use_test_base;
 auto_include;
 WriteAll;

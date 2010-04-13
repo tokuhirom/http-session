@@ -35,6 +35,7 @@ sub response_filter {
             return $res;
         } elsif (my $body = $res->[2]) {
             if ( ref $body eq 'ARRAY' ) {
+                # TODO: look the content-type header.
                 my $content = '';
                 for my $line (@$body) {
                     $content .= $line if length $line;
