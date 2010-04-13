@@ -14,7 +14,7 @@ sub response_filter {
                 $res->header('Location' => $self->redirect_filter($session_id, $uri));
             }
             return $res;
-        } elsif ($res->content) {
+        } elsif ($res->content && ($res->header('Content-Type')||'text/html') =~ /html/) {
             $res->content( $self->html_filter($session_id, $res->content) );
             return $res;
         } else {

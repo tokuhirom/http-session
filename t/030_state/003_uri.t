@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More;
 plan skip_all => 'this test requires HTML::StickyQuery' unless eval "use HTML::StickyQuery; 1;";
-plan tests => 10;
+plan tests => 11;
 use Test::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
@@ -60,6 +60,14 @@ sub {
         my $res = HTTP::Response->new(302, 'no location');
         $session->response_filter($res);
         is $res->code, 302, 'no locaiton';
+    }->();
+
+    sub {
+        my $res = HTTP::Response->new(200, 'binary');
+        $res->content_type('image/jpeg');
+        $res->content("\x00<form>");
+        $session->response_filter($res);
+        is $res->content, "\x00<form>";
     }->();
 
     throws_ok { $session->state->get_session_id }  qr/missing req/;
