@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base qw/Class::Accessor::Fast/;
 use 5.00800;
-our $VERSION = '0.35';
+our $VERSION = '0.36';
 use Carp ();
 use Scalar::Util ();
 use UNIVERSAL::require;
