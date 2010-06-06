@@ -19,10 +19,8 @@ lib/HTTP/Session/ID/MD5.pm
 lib/HTTP/Session/ID/SHA1.pm
 lib/HTTP/Session/State/Base.pm
 lib/HTTP/Session/State/Cookie.pm
-lib/HTTP/Session/State/GUID.pm
 lib/HTTP/Session/State/Mixin/ResponseFilter.pm
 lib/HTTP/Session/State/MobileAgentID.pm
-lib/HTTP/Session/State/MobileAttributeID.pm
 lib/HTTP/Session/State/Null.pm
 lib/HTTP/Session/State/Test.pm
 lib/HTTP/Session/State/URI.pm
@@ -55,8 +53,6 @@ t/030_state/001_null.t
 t/030_state/002_cookie.t
 t/030_state/003_uri.t
 t/030_state/004_test.t
-t/030_state/005_mobile_attribute.t
-t/030_state/006_guid.t
 t/030_state/007_cookie_simple.t
 t/030_state/008_mobile_agent.t
 t/040_regression/changed_typo.t

@@ -1,5 +1,10 @@
 Revision history for Perl extension HTTP::Session
 
+0.37
+
+    - removed State::GUID, State::MobileAttributeID from core.
+      it was shipped as separated dist.
+
 0.36
 
     - fixed test case
