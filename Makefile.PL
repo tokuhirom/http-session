@@ -10,8 +10,6 @@ requires 'UNIVERSAL::require'  => 0.05;
 requires 'URI'                 => 1.38;
 
 recommends 'HTML::StickyQuery'               => 0.12; # State::URI
-recommends 'HTML::StickyQuery::DoCoMoGUID'   => 0.01; # State::URI
-recommends 'HTTP::MobileAttribute'           => 0.07; # State::MobileAttributeID
 recommends 'HTTP::MobileAgent'               => 0.27; # State::MobileAgentID
 
 tests 't/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t';
