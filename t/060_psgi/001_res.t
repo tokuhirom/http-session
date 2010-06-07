@@ -2,6 +2,7 @@ use strict;
 use warnings;
 use Test::More tests => 7;
 use CGI;
+use Test::Requires 'HTML::StickyQuery';
 use HTTP::Session;
 use HTTP::Session::State::Cookie;
 use HTTP::Session::State::URI;
