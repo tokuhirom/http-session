@@ -8,6 +8,7 @@ requires 'Digest::SHA1'        => 2.11;
 requires 'HTTP::Response'      => 5.818;
 requires 'UNIVERSAL::require'  => 0.05;
 requires 'URI'                 => 1.38;
+requires 'Exporter'            => 5.63; # depend to latest Exporter for 'use Exporter "import"'.
 
 recommends 'HTML::StickyQuery'               => 0.12; # State::URI
 recommends 'HTTP::MobileAgent'               => 0.27; # State::MobileAgentID
