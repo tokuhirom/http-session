@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.40
+
+    - split HTTP::Session::State::MobileAgentID from core distribution.
+
 0.39
 
     - fresh Exporter.pm is required.
