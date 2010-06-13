@@ -11,7 +11,6 @@ requires 'URI'                 => 1.38;
 requires 'Exporter'            => 5.63; # depend to latest Exporter for 'use Exporter "import"'.
 
 recommends 'HTML::StickyQuery'               => 0.12; # State::URI
-recommends 'HTTP::MobileAgent'               => 0.27; # State::MobileAgentID
 
 tests 't/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t';
 test_requires 'Test::Requires';
