@@ -18,5 +18,4 @@ test_requires 'Test::More';
 test_requires 'Test::Exception';
 author_tests('xt');
 auto_set_repository();
-auto_include;
 WriteAll;
