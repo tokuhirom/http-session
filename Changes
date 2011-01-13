@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.41
+
+    - do not use fucking auto_include()
+
 0.40
 
     - split HTTP::Session::State::MobileAgentID from core distribution.
