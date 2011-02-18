@@ -2,6 +2,7 @@ package HTTP::Session::Store::Memcached;
 use strict;
 use warnings;
 use base qw/Class::Accessor::Fast/;
+use Digest::SHA1;
 
 __PACKAGE__->mk_ro_accessors(qw/memd expires/);
 
@@ -20,25 +21,30 @@ sub new {
 
 sub select {
     my ( $self, $session_id ) = @_;
-    my $data = $self->memd->get($session_id);
+    my $data = $self->memd->get(_filter_sid($session_id));
 }
 
 sub insert {
     my ($self, $session_id, $data) = @_;
-    $self->memd->set( $session_id, $data, $self->expires );
+    $self->memd->set( _filter_sid($session_id), $data, $self->expires );
 }
 
 sub update {
     my ($self, $session_id, $data) = @_;
-    $self->memd->replace( $session_id, $data, $self->expires );
+    $self->memd->replace( _filter_sid($session_id), $data, $self->expires );
 }
 
 sub delete {
     my ($self, $session_id) = @_;
-    $self->memd->delete( $session_id );
+    $self->memd->delete( _filter_sid($session_id) );
 }
 
 sub cleanup { Carp::croak "This storage doesn't support cleanup" }
+
+sub _filter_sid {
+    my $session_id = shift;
+    substr( Digest::SHA1::sha1_hex( $session_id ), 0, 32 );
+}
 
 1;
 __END__
