@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 use Test::Exception;
 plan skip_all => 'please set $ENV{TEST_MEMD}' unless $ENV{TEST_MEMD};
-plan tests => 5;
+plan tests => 11;
 use HTTP::Session;
 use CGI;
 require HTTP::Session::Store::Memcached;
@@ -29,3 +29,19 @@ $store->delete($key);
 is $store->select($key), undef;
 ok $store;
 
+sub injection (&);
+
+my $injection_key = "x"x1024 . rand();;
+injection { $store->select($injection_key); };
+injection { $store->insert($injection_key, {foo => 'bar'}); };
+injection { $store->select($injection_key)->{foo}; };
+
+$injection_key = "x\r\nstats\r\n" . rand();;
+injection { $store->select($injection_key); };
+injection { $store->insert($injection_key, {foo => 'bar'}); };
+injection { $store->select($injection_key)->{foo}, 'bar'; };
+
+sub injection (&) {
+    eval { $_[0]->() };
+    like $@, qr/injection/;
+}
