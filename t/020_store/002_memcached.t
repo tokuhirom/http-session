@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 use Test::Exception;
 plan skip_all => 'please set $ENV{TEST_MEMD}' unless $ENV{TEST_MEMD};
-plan tests => 11;
+plan tests => 17;
 use HTTP::Session;
 use CGI;
 require HTTP::Session::Store::Memcached;
@@ -37,6 +37,16 @@ injection { $store->insert($injection_key, {foo => 'bar'}); };
 injection { $store->select($injection_key)->{foo}; };
 
 $injection_key = "x\r\nstats\r\n" . rand();;
+injection { $store->select($injection_key); };
+injection { $store->insert($injection_key, {foo => 'bar'}); };
+injection { $store->select($injection_key)->{foo}, 'bar'; };
+
+$injection_key = "m e m c a c h e d" . rand();;
+injection { $store->select($injection_key); };
+injection { $store->insert($injection_key, {foo => 'bar'}); };
+injection { $store->select($injection_key)->{foo}, 'bar'; };
+
+$injection_key = qq!\x{3042}!x100;
 injection { $store->select($injection_key); };
 injection { $store->insert($injection_key, {foo => 'bar'}); };
 injection { $store->select($injection_key)->{foo}, 'bar'; };
