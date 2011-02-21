@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.43
+
+    - better memcached injection detection(kazeburo++)
+
 0.42
 
     - detect memcached injection(reported by kazeburo++)
