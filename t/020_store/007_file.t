@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::More tests => 5;
-use Test::Exception;
+use t::Exception;
 use HTTP::Session;
 use CGI;
 use HTTP::Session::Store::File;

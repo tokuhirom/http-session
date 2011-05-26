@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 plan skip_all => 'this test requires HTML::StickyQuery' unless eval "use HTML::StickyQuery; 1;";
 plan tests => 11;
-use Test::Exception;
+use t::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
 require HTTP::Session::State::URI;

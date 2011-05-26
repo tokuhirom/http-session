@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::Requires 'CHI';
 use Test::More tests => 4*2;
-use Test::Exception;
+use t::Exception;
 use HTTP::Session;
 use CGI;
 use HTTP::Session::State::Null;

@@ -12,10 +12,18 @@ requires 'Exporter'            => 5.63; # depend to latest Exporter for 'use Exp
 
 recommends 'HTML::StickyQuery'               => 0.12; # State::URI
 
+if ($Module::Install::AUTHOR) {
+	requires 'HTML::StickyQuery';
+	requires 'CHI';
+	requires 'HTML::StickyQuery';
+	requires 'Test::Memory::Cycle';
+	requires 'Test::Perl::Critic';
+	requires 'Test::Pod';
+}
+
 tests 't/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t';
 test_requires 'Test::Requires';
 test_requires 'Test::More';
-test_requires 'Test::Exception';
 author_tests('xt');
 auto_set_repository();
 WriteAll;

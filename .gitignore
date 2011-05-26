@@ -1,4 +1,5 @@
 META.yml
+MYMETA.yml
 Makefile
 blib/
 inc/
@@ -6,3 +7,4 @@ pm_to_blib
 t/moose/
 t_moose_t/
 *.sw[po]
+Makefile.old

@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
-use Test::Exception;
+use t::Exception;
 plan skip_all => 'please set $ENV{TEST_MEMD}' unless $ENV{TEST_MEMD};
 plan tests => 17;
 use HTTP::Session;

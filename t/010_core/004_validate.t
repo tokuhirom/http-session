@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::More tests => 2;
-use Test::Exception;
+use t::Exception;
 use HTTP::Session;
 use HTTP::Session::State::Null;
 use HTTP::Session::Store::Null;

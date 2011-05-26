@@ -2,7 +2,7 @@ package t::CookieTest;
 use strict;
 use warnings;
 use Test::More;
-use Test::Exception;
+use t::Exception;
 use HTTP::Session;
 use HTTP::Session::Store::Test;
 use HTTP::Session::State::Cookie;
