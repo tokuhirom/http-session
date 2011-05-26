@@ -30,3 +30,5 @@
 ^logo.jpg$
 ^\.git
 ^t/moose/
+^HTTP-Session-\d
+^MYMETA.yml$

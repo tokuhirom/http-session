@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.44
+
+    - do not depend to Test::Exception!
+
 0.43
 
     - better memcached injection detection(kazeburo++)

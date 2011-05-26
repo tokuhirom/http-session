@@ -8,3 +8,4 @@ t/moose/
 t_moose_t/
 *.sw[po]
 Makefile.old
+*.bak
