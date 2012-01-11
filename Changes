@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.46
+
+    - oops
+
 0.45
 
     - use Module::Runtime instead of UNIVERSAL::require

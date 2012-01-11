@@ -4,7 +4,7 @@ use warnings;
 use base qw/Class::Accessor::Fast/;
 use Fcntl;
 use Storable;
-use UNIVERSAL::require;
+use Module::Runtime ();
 
 __PACKAGE__->mk_ro_accessors(qw/file dbm_class/);
 
@@ -24,7 +24,7 @@ sub dbm {
     my $self = shift;
     $self->{dbm} ||= do {
         my %hash;
-        $self->dbm_class->use or die $@;
+        Module::Runtime::require_module($self->dbm_class) or die $@;
         tie %hash, $self->dbm_class, $self->file, O_CREAT | O_RDWR, oct("600") or die "Cannot open dbm file for session: $self->{dbm_class}, $self->{file}";
         \%hash;
     };

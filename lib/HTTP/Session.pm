@@ -3,10 +3,10 @@ use strict;
 use warnings;
 use base qw/Class::Accessor::Fast/;
 use 5.00800;
-our $VERSION = '0.45';
+our $VERSION = '0.46';
 use Carp ();
 use Scalar::Util ();
-use UNIVERSAL::require;
+use Module::Runtime ();
 
 __PACKAGE__->mk_ro_accessors(qw/store request sid_length/);
 __PACKAGE__->mk_accessors(qw/session_id _data is_changed is_fresh state/);
@@ -59,7 +59,7 @@ sub _load_session {
 
 sub _generate_session_id {
     my $self = shift;
-    $self->{id}->require or die $@;
+    Module::Runtime::require_module($self->{id}) or die $@;
     $self->{id}->generate_id($self->sid_length);
 }
 
