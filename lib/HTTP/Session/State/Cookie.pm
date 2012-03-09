@@ -6,7 +6,7 @@ use Scalar::Util ();
 
 our $COOKIE_CLASS = 'CGI::Cookie';
 
-__PACKAGE__->mk_ro_accessors(qw/name path domain expires/);
+__PACKAGE__->mk_accessors(qw/name path domain expires/);
 
 {
     my $required = 0;
