@@ -8,7 +8,7 @@ use Carp ();
 use Scalar::Util ();
 use Module::Runtime ();
 
-__PACKAGE__->mk_ro_accessors(qw/store request sid_length/);
+__PACKAGE__->mk_ro_accessors(qw/store request sid_length save_modified_session_only/);
 __PACKAGE__->mk_accessors(qw/session_id _data is_changed is_fresh state/);
 
 sub new {
@@ -20,6 +20,7 @@ sub new {
     }
     # set default values
     $args{_data} ||= {};
+    $args{save_modified_session_only} ||= 0;
     $args{is_changed} ||= 0;
     $args{is_fresh}   ||= 0;
     $args{sid_length} ||= 32;
@@ -74,7 +75,9 @@ sub finalize {
     my ($self, ) = @_;
 
     if ($self->is_fresh) {
-        $self->store->insert( $self->session_id, $self->_data );
+        if ($self->is_changed || !$self->save_modified_session_only) {
+            $self->store->insert( $self->session_id, $self->_data );
+        }
     } else {
         if ($self->is_changed) {
             $self->store->update( $self->session_id, $self->_data );
