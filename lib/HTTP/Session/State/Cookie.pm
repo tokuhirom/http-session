@@ -6,7 +6,7 @@ use Scalar::Util ();
 
 our $COOKIE_CLASS = 'CGI::Cookie';
 
-__PACKAGE__->mk_accessors(qw/name path domain expires/);
+__PACKAGE__->mk_accessors(qw/name path domain expires secure/);
 
 {
     my $required = 0;
@@ -62,6 +62,7 @@ sub header_filter {
             );
             $options{'-domain'} = $self->domain if $self->domain;
             $options{'-expires'} = $self->expires if $self->expires;
+            $options{'-secure'} = $self->secure if $self->secure;
             %options;
         }->()
     );

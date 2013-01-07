@@ -193,7 +193,7 @@ HTTP::Session - simple session
             }),
         ),
         state   => HTTP::Session::State::Cookie->new(
-            cookie_key => 'foo_sid'
+            name => 'foo_sid'
         ),
         request => $c->req,
     );
