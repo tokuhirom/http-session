@@ -120,8 +120,14 @@ path.
 
 =item expires
 
-expire date.e.g. "+3M".
+expiration date.e.g. "+3M".
 see also L<CGI::Cookie>.
+
+    default: undef
+
+=item secure
+
+Set secure flag or not.
 
     default: undef
 
