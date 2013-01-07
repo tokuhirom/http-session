@@ -1,5 +1,9 @@
 Revision history for Perl extension HTTP::Session
 
+0.47
+
+    - added EXPERIMENTAL save_modified_session_only flag.
+
 0.46
 
     - oops
