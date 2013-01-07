@@ -110,6 +110,25 @@ sub test {
 
         my $session = HTTP::Session->new(
             store => $store,
+            state => HTTP::Session::State::Cookie->new(
+                name    => 'foo_sid',
+                path    => '/admin/',
+                domain  => 'example.com',
+                secure  => 1,
+            ),
+            request => $cgi->new
+        );
+        is $session->session_id, 'bar';
+        my $res = HTTP::Response->new(200, 'foo');
+        $session->response_filter($res);
+        is $res->header('Set-Cookie'), 'foo_sid=bar; domain=example.com; path=/admin/; secure';
+    }->();
+
+    sub {
+        local $ENV{HTTP_COOKIE} = 'foo_sid=bar; path=/admin/;';
+
+        my $session = HTTP::Session->new(
+            store => $store,
             state => HTTP::Session::State::Cookie->new(),
             request => $cgi->new
         );
