@@ -1,5 +1,10 @@
 Revision history for Perl extension HTTP::Session
 
+0.48
+
+    - Session::State::Cookie: Added secure option(tohae)
+    - Session::State::Cookie: make CGI::Cookie parameters customizable.(matsuu)
+
 0.47
 
     - added EXPERIMENTAL save_modified_session_only flag.
