@@ -57,9 +57,10 @@
             "Digest::SHA1" : "2.11",
             "Exporter" : "5.63",
             "HTTP::Response" : "5.818",
+            "MIME::Base64" : "0",
             "Module::Runtime" : "0.011",
             "URI" : "1.38",
-            "perl" : "5.00800"
+            "perl" : "5.008005"
          }
       }
    },

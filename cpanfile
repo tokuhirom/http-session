@@ -6,6 +6,7 @@ requires 'HTTP::Response', '5.818';
 requires 'Module::Runtime', '0.011';
 requires 'URI', '1.38';
 requires 'perl', '5.008005';
+requires 'MIME::Base64';
 recommends 'HTML::StickyQuery', '0.12';
 
 on build => sub {

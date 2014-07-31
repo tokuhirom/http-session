@@ -1,6 +1,8 @@
 Revision history for Perl module HTTP::Session
 
-{{NEXT}}
+{{$NEXT}}
+
+0.49 2014-07-31T22:05:03Z
 
     - Better ssession id generation.
 
