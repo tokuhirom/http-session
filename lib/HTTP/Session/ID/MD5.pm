@@ -9,7 +9,7 @@ use Time::HiRes  ();
 
 sub generate_id {
     my ($class, $sid_length) = @_;
-    my $unique = $ENV{UNIQUE_ID} || ( [] . rand() );
+    my $unique = $ENV{UNIQUE_ID} || ( [] . rand() . $$ );
     return substr( Digest::MD5::md5_hex( Time::HiRes::gettimeofday() . $unique ), 0, $sid_length );
 }
 
