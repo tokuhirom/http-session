@@ -15,6 +15,4 @@ recommends 'HTML::StickyQuery'               => 0.12; # State::URI
 tests 't/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t';
 test_requires 'Test::Requires';
 test_requires 'Test::More';
-author_tests('xt');
-auto_set_repository();
-WriteAll;
+WriteAll();
