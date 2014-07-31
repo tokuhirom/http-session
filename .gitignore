@@ -9,3 +9,11 @@ t_moose_t/
 *.sw[po]
 Makefile.old
 *.bak
+/HTTP-Session-*
+/.build
+/_build_params
+/Build
+/Build.bat
+!Build/
+!META.json
+!LICENSE
