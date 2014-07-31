@@ -5,7 +5,7 @@ requires 'Exporter', '5.63';
 requires 'HTTP::Response', '5.818';
 requires 'Module::Runtime', '0.011';
 requires 'URI', '1.38';
-requires 'perl', '5.00800';
+requires 'perl', '5.008005';
 recommends 'HTML::StickyQuery', '0.12';
 
 on build => sub {
