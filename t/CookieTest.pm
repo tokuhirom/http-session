@@ -108,6 +108,49 @@ sub test {
     sub {
         local $ENV{HTTP_COOKIE} = 'foo_sid=bar; path=/admin/;';
 
+	for my $option ([secure => 1], [HttpOnly => 1]) {
+            my $session = HTTP::Session->new(
+                store => $store,
+                state => HTTP::Session::State::Cookie->new(
+                    name    => 'foo_sid',
+                    lc($option->[0]) => $option->[1],
+                ),
+                request => $cgi->new
+            );
+            my $res = HTTP::Response->new(200, 'foo');
+            $session->response_filter($res);
+
+            is $res->header('Set-Cookie'), 'foo_sid=bar; path=/; '. $option->[0], "@$option";
+        }
+    }->();
+
+    sub {
+        local $ENV{HTTP_COOKIE} = 'foo_sid=bar; path=/admin/;';
+
+	for my $option ([SameSite => 'None'], [SameSite => 'Lax'], [SameSite => 'Strict']) {
+          SKIP: {
+            my $session = HTTP::Session->new(
+                store => $store,
+                state => HTTP::Session::State::Cookie->new(
+                    name    => 'foo_sid',
+                    lc($option->[0]) => $option->[1],
+                ),
+                request => $cgi->new
+            );
+            my $res = HTTP::Response->new(200, 'foo');
+            $session->response_filter($res);
+
+            skip "CGI::Simple 1.22 doesn't support SameSite=None", 1 if $option->[1] eq 'None';
+            my $option_string = $option->[0] . '=' . $option->[1];
+            is $res->header('Set-Cookie'), 'foo_sid=bar; path=/; '. $option_string, "@$option";
+          }
+        }
+    }->();
+
+
+    sub {
+        local $ENV{HTTP_COOKIE} = 'foo_sid=bar; path=/admin/;';
+
         my $session = HTTP::Session->new(
             store => $store,
             state => HTTP::Session::State::Cookie->new(),
