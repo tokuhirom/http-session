@@ -52,7 +52,8 @@
             "HTML::StickyQuery" : "0.12"
          },
          "requires" : {
-            "CGI::Simple::Cookie" : "1.103",
+            "CGI" : "4.45",
+            "CGI::Simple::Cookie" : "1.22",
             "Class::Accessor::Fast" : "0.31",
             "Digest::SHA1" : "2.11",
             "Exporter" : "5.63",
