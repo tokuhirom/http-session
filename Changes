@@ -2,6 +2,11 @@ Revision history for Perl module HTTP::Session
 
 {{$NEXT}}
 
+0.50 2020-02-13T14:31:27Z
+
+    - enable to set httponly and samesite cookie options.
+      (ktat)
+
 0.49 2014-07-31T22:05:03Z
 
     - Better ssession id generation.

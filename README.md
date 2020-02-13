@@ -93,7 +93,7 @@ Some storage doesn't care the old session data.Please call $store->cleanup( $min
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>
+Tokuhiro Matsuno &lt;tokuhirom AAJKLFJEF GMAIL COM>
 
 # THANKS TO
 

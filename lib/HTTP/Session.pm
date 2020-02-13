@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base qw/Class::Accessor::Fast/;
 use 5.00800;
-our $VERSION = '0.49';
+our $VERSION = '0.50';
 use Carp ();
 use Scalar::Util ();
 use Module::Runtime ();
