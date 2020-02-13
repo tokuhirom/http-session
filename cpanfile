@@ -1,4 +1,5 @@
-requires 'CGI::Simple::Cookie', '1.103';
+requires 'CGI::Simple::Cookie', '1.22';
+requires 'CGI', '4.45';
 requires 'Class::Accessor::Fast', '0.31';
 requires 'Digest::SHA1', '2.11';
 requires 'Exporter', '5.63';
