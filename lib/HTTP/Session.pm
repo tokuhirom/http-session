@@ -7,6 +7,8 @@ our $VERSION = '0.51';
 use Carp ();
 use Scalar::Util ();
 use Module::Runtime ();
+use HTTP::Session::Finalized;
+use HTTP::Session::Expired;
 
 __PACKAGE__->mk_ro_accessors(qw/store request sid_length save_modified_session_only/);
 __PACKAGE__->mk_accessors(qw/session_id _data is_changed is_fresh state/);
@@ -164,14 +166,6 @@ BEGIN {
         };
     }
 }
-
-package HTTP::Session::Finalized;
-sub is_fresh { 0 }
-sub AUTOLOAD { }
-
-package HTTP::Session::Expired;
-sub is_fresh { 0 }
-sub AUTOLOAD { }
 
 1;
 __END__

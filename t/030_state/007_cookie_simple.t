@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use lib "../../";
+use lib qw(../../ .);
 use Test::More;
 use t::CookieTest;
 use CGI::Simple;

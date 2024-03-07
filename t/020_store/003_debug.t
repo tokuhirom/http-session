@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use lib "../../";
+use lib qw(../../ .);
 use Test::More tests => 4;
 use t::Exception;
 use HTTP::Session;
