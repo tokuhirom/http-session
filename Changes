@@ -2,6 +2,10 @@ Revision history for Perl module HTTP::Session
 
 {{$NEXT}}
 
+0.53 2024-03-07T05:47:13Z
+
+   - version up to fix PUUSE indexing problem.
+
 0.52 2024-03-07T04:47:45Z
 
    - Separate HTTP::Session::Expired & HTTP::Session::Finalized
