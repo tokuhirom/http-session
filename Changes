@@ -2,6 +2,11 @@ Revision history for Perl module HTTP::Session
 
 {{$NEXT}}
 
+0.52 2024-03-07T04:47:45Z
+
+   - Separate HTTP::Session::Expired & HTTP::Session::Finalized
+     from HTTP::Session to fix PAUSE indexing problem(reported by eserte)
+
 0.51 2024-03-07T03:51:20Z
 
    - Fix regexp in test for cookie expires date format
