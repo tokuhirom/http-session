@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use lib "../../";
 use Test::Requires 'CHI';
 use Test::More tests => 4*2;
 use t::Exception;

@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use lib "../../";
 use Test::More;
 use t::Exception;
 plan skip_all => 'please set $ENV{TEST_MEMD}' unless $ENV{TEST_MEMD};
