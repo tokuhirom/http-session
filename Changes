@@ -2,6 +2,10 @@ Revision history for Perl module HTTP::Session
 
 {{$NEXT}}
 
+   - HTTP::Session::Store::CHI now filters session ids the same way
+     HTTP::Session::Store::Memcached does, rejecting control characters
+     and overly long ids before passing them to the backend.
+
 0.53 2024-03-07T05:47:13Z
 
    - version up to fix PUUSE indexing problem.
