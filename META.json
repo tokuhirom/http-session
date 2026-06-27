@@ -1,10 +1,10 @@
 {
-   "abstract" : "simple session",
+   "abstract" : "(DEPRECATED) simple session",
    "author" : [
       "Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.1.23, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Minilla/v3.1.29, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
@@ -84,12 +84,14 @@
       "Atsushi Kato <ktat@cpan.org>",
       "MATSUU Takuto <matsuu@gmail.com>",
       "Neil Bowers <neil@bowers.com>",
+      "Olaf Alders <olaf@wundersolutions.com>",
       "Tokuhiro Matsuno <tokuhirom@gmail.com>",
       "kazuho <kazuho@d0d07461-0603-4401-acd4-de1884942a52>",
       "tohae <tohaechan@gmail.com>",
       "tokuhirom <tokuhirom@d0d07461-0603-4401-acd4-de1884942a52>",
       "yappo <yappo@d0d07461-0603-4401-acd4-de1884942a52>"
    ],
-   "x_serialization_backend" : "JSON::PP version 4.06",
+   "x_deprecated" : 1,
+   "x_serialization_backend" : "JSON::PP version 4.16",
    "x_static_install" : 1
 }

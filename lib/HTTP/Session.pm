@@ -177,7 +177,7 @@ __END__
 
 =head1 NAME
 
-HTTP::Session - simple session
+HTTP::Session - (DEPRECATED) simple session
 
 =head1 SYNOPSIS
 
@@ -196,6 +196,8 @@ HTTP::Session - simple session
     );
 
 =head1 DESCRIPTION
+
+B<This module is deprecated.> Use L<Plack::Middleware::Session> instead.
 
 Yet another session manager.
 
