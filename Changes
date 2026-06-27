@@ -9,6 +9,9 @@ Revision history for Perl module HTTP::Session
      HTTP::Session::ID::SHA1 (CVE-2026-3256): they now hash cryptographically
      secure random bytes from Crypt::URandom instead of a time/PID/rand()-based
      value. Their hexadecimal output format is unchanged.
+   - HTTP::Session::Store::CHI now filters session ids the same way
+     HTTP::Session::Store::Memcached does, rejecting control characters
+     and overly long ids before passing them to the backend.
 
 0.53 2024-03-07T05:47:13Z
 
