@@ -2,6 +2,13 @@ Revision history for Perl module HTTP::Session
 
 {{$NEXT}}
 
+   - HTTP::Session::ID::Urandom now draws from Crypt::URandom instead of
+     reading /dev/urandom directly, for portability and speed, and is now the
+     default session-ID backend.
+   - Fix predictable session-ID generation in HTTP::Session::ID::MD5 and
+     HTTP::Session::ID::SHA1 (CVE-2026-3256): they now hash cryptographically
+     secure random bytes from Crypt::URandom instead of a time/PID/rand()-based
+     value. Their hexadecimal output format is unchanged.
    - HTTP::Session::Store::CHI now filters session ids the same way
      HTTP::Session::Store::Memcached does, rejecting control characters
      and overly long ids before passing them to the backend.
