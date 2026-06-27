@@ -2,6 +2,9 @@ Revision history for Perl module HTTP::Session
 
 {{$NEXT}}
 
+   - This distribution is now deprecated (x_deprecated). Use
+     Plack::Middleware::Session instead. This module will no longer be
+     maintained or receive further updates.
    - HTTP::Session::ID::Urandom now draws from Crypt::URandom instead of
      reading /dev/urandom directly, for portability and speed, and is now the
      default session-ID backend.
