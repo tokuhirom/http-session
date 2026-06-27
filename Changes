@@ -2,6 +2,8 @@ Revision history for Perl module HTTP::Session
 
 {{$NEXT}}
 
+0.54 2026-06-27T22:35:07Z
+
    - This distribution is now deprecated (x_deprecated). Use
      Plack::Middleware::Session instead. This module will no longer be
      maintained or receive further updates.

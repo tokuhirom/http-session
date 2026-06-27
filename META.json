@@ -78,7 +78,7 @@
          "web" : "https://github.com/tokuhirom/http-session"
       }
    },
-   "version" : "0.53",
+   "version" : "0.54",
    "x_contributors" : [
       "Atsushi Kato <ktat.is@gmail.com>",
       "Atsushi Kato <ktat@cpan.org>",
